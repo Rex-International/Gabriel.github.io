@@ -36,407 +36,431 @@
 <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 
 <script>
-tailwind.config = {
-darkMode: 'class',
-theme: {
-extend: {
-colors: { primary: '#6366f1', secondary: '#8b5cf6', accent: '#ec4899' },
-animation: { 'fade-in': 'fadeIn 0.3s ease-out' },
-keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
-}
-}
-}
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: { primary: '#6366f1', secondary: '#8b5cf6', accent: '#ec4899' },
+        animation: { 'fade-in': 'fadeIn 0.3s ease-out' },
+        keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
+      }
+    }
+  }
 </script>
 
 <style>
-• { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; overscroll-behavior: none; }
-.gradient-text { background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); }
-.tab-active { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border-color: transparent; box-shadow: 0 4px 12px rgba(99,102,241,0.4); }
-.custom-scrollbar::-webkit-scrollbar { width: 4px; }
-.custom-scrollbar::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 2px; }
-.btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); transition: all 0.2s; }
-.btn-primary:active { transform: scale(0.98); }
-.action-btn { transition: all 0.2s; }
-.action-btn:active { transform: scale(0.95); }
-.toast { animation: toastIn 0.3s ease-out; }
-@keyframes toastIn { from { transform: translate(-50%, 100px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-.color-swatch { width: 36px; height: 36px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; position: relative; }
-.color-swatch:hover { transform: scale(1.1); }
-.color-swatch.selected { border-color: #6366f1; box-shadow: 0 0 0 2px white, 0 0 0 4px #6366f1; }
-.color-swatch.selected::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold; font-size: 14px; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
-.color-swatch.light-swatch.selected::after { color: #333; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
-.install-btn-pulse { animation: pulse-border 2s infinite; }
-@keyframes pulse-border { 0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); } 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); } }
-#camera-video { width: 100%; height: 100%; object-fit: cover; background: #000; }
-.scan-overlay { pointer-events: none; }
+  * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; overscroll-behavior: none; }
+  .gradient-text { background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); }
+  .tab-active { background: linear-gradient(135deg, #6366f1, #8b5cf6) !important; color: white !important; border-color: transparent !important; box-shadow: 0 4px 12px rgba(99,102,241,0.4); }
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 2px; }
+  .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); transition: all 0.2s; }
+  .btn-primary:active { transform: scale(0.98); }
+  .action-btn { transition: all 0.2s; }
+  .action-btn:active { transform: scale(0.95); }
+  .toast { animation: toastIn 0.3s ease-out; }
+  @keyframes toastIn { from { transform: translate(-50%, 100px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .color-swatch { width: 36px; height: 36px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; position: relative; }
+  .color-swatch:hover { transform: scale(1.1); }
+  .color-swatch.selected { border-color: #6366f1 !important; box-shadow: 0 0 0 2px white, 0 0 0 4px #6366f1; }
+  .color-swatch.selected::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold; font-size: 14px; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+  .color-swatch.light-swatch.selected::after { color: #333; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
+  .install-btn-pulse { animation: pulse-border 2s infinite; }
+  @keyframes pulse-border { 0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); } 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); } }
+  #camera-video { width: 100%; height: 100%; object-fit: cover; background: #000; }
+  .scan-overlay { pointer-events: none; }
 </style>
 </head>
-<body class="bg-gray-50 dark:bg-slate-900 min-h-screen transition-colors duration-300">
+<body class="bg-gray-50 dark:bg-slate-900 min-h-screen transition-colors duration-300" onload="initApp()">
 
+<!-- PROTECTED VIEWER -->
 <div id="protected-viewer" class="hidden fixed inset-0 z-50 bg-gradient-to-br from-slate-900 to-indigo-900 flex items-center justify-center p-4">
-<div class="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl text-center">
-<div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4"><i class="fa-solid fa-lock text-white text-2xl"></i></div>
-<h2 class="text-2xl font-bold mb-2 dark:text-white">Protected Content</h2>
-<p class="text-gray-500 mb-6 text-sm">This QR code contains private information. Please enter the password to view it.</p>
-<input type="password" id="protected-password" placeholder="Enter Password" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm mb-4" />
-<button id="unlock-btn" class="w-full py-3 btn-primary text-white font-bold rounded-xl mb-3">Unlock Content</button>
-<button id="back-to-home-protected" class="text-sm text-gray-500 hover:text-primary">← Back to Generator</button>
-<div id="protected-content-display" class="hidden mt-4 p-4 bg-gray-50 dark:bg-slate-900 rounded-lg text-left">
-<h3 class="font-bold mb-2 dark:text-white">Decrypted Content:</h3>
-<p id="protected-text" class="text-sm break-all dark:text-gray-300"></p>
-<div id="protected-action-area" class="mt-4"></div>
-</div>
-</div>
+  <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl text-center">
+    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4"><i class="fa-solid fa-lock text-white text-2xl"></i></div>
+    <h2 class="text-2xl font-bold mb-2 dark:text-white">Protected Content</h2>
+    <p class="text-gray-500 mb-6 text-sm">This QR code contains private information. Please enter the password to view it.</p>
+    <input type="password" id="protected-password" placeholder="Enter Password" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm mb-4" />
+    <button onclick="unlockProtected()" class="w-full py-3 btn-primary text-white font-bold rounded-xl mb-3">Unlock Content</button>
+    <button onclick="goBackHome()" class="text-sm text-gray-500 hover:text-primary">← Back to Generator</button>
+    <div id="protected-content-display" class="hidden mt-4 p-4 bg-gray-50 dark:bg-slate-900 rounded-lg text-left">
+      <h3 class="font-bold mb-2 dark:text-white">Decrypted Content:</h3>
+      <p id="protected-text" class="text-sm break-all dark:text-gray-300"></p>
+      <div id="protected-action-area" class="mt-4"></div>
+    </div>
+  </div>
 </div>
 
+<!-- MENU VIEWER -->
 <div id="menu-viewer" class="hidden fixed inset-0 z-50 bg-white dark:bg-slate-900 overflow-y-auto">
-<div id="menu-hero" class="relative bg-gradient-to-br from-indigo-500 to-purple-600 min-h-[200px]">
-<div class="absolute inset-0 bg-black/40 flex items-end p-6">
-<div>
-<h1 id="menu-title" class="text-3xl font-bold text-white mb-1"></h1>
-<p id="menu-subtitle" class="text-white/90 text-sm"></p>
-</div>
-</div>
-</div>
-<div class="p-6 max-w-2xl mx-auto pb-20">
-<h2 class="text-xl font-bold mb-4 dark:text-white border-b border-gray-200 dark:border-slate-700 pb-2">Our Menu</h2>
-<div id="menu-items-list" class="space-y-4"></div>
-<div class="mt-8 text-center">
-<p class="text-xs text-gray-400">Powered by <span class="font-bold gradient-text">Rex International Technologies</span></p>
-<button id="menu-back-btn" class="mt-4 px-6 py-2 bg-gray-100 dark:bg-slate-800 rounded-full text-sm font-semibold dark:text-white">← Create Your Own</button>
-</div>
-</div>
+  <div id="menu-hero" class="relative bg-gradient-to-br from-indigo-500 to-purple-600 min-h-[200px]">
+    <div class="absolute inset-0 bg-black/40 flex items-end p-6">
+      <div>
+        <h1 id="menu-title" class="text-3xl font-bold text-white mb-1"></h1>
+        <p id="menu-subtitle" class="text-white/90 text-sm"></p>
+      </div>
+    </div>
+  </div>
+  <div class="p-6 max-w-2xl mx-auto pb-20">
+    <h2 class="text-xl font-bold mb-4 dark:text-white border-b border-gray-200 dark:border-slate-700 pb-2">Our Menu</h2>
+    <div id="menu-items-list" class="space-y-4"></div>
+    <div class="mt-8 text-center">
+      <p class="text-xs text-gray-400">Powered by <span class="font-bold gradient-text">Rex International Technologies</span></p>
+      <button onclick="goBackHome()" class="mt-4 px-6 py-2 bg-gray-100 dark:bg-slate-800 rounded-full text-sm font-semibold dark:text-white">← Create Your Own</button>
+    </div>
+  </div>
 </div>
 
+<!-- SCAN RESULT PAGE -->
 <div id="scan-result-page" class="hidden fixed inset-0 z-50 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-900 dark:to-slate-800 overflow-y-auto">
-<div class="max-w-md mx-auto p-6 min-h-screen flex flex-col">
-<div class="text-center mb-6 pt-4">
-<div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-<i id="result-icon" class="fa-solid fa-qrcode text-white text-3xl"></i>
-</div>
-<h1 id="result-title" class="text-2xl font-bold dark:text-white mb-1">QR Code Scanned</h1>
-<p class="text-sm text-gray-500">Here's what we found</p>
-</div>
-<div id="result-content" class="flex-1 bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-slate-700"></div>
-<button id="scan-again-btn" class="mt-6 w-full py-4 gradient-bg text-white font-bold rounded-xl shadow-lg flex items-center justify-center gap-2">
-<i class="fa-solid fa-camera"></i> Scan Another
-</button>
-</div>
+  <div class="max-w-md mx-auto p-6 min-h-screen flex flex-col">
+    <div class="text-center mb-6 pt-4">
+      <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+        <i id="result-icon" class="fa-solid fa-qrcode text-white text-3xl"></i>
+      </div>
+      <h1 id="result-title" class="text-2xl font-bold dark:text-white mb-1">QR Code Scanned</h1>
+      <p class="text-sm text-gray-500">Here's what we found</p>
+    </div>
+    <div id="result-content" class="flex-1 bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-slate-700"></div>
+    <button onclick="scanAgain()" class="mt-6 w-full py-4 gradient-bg text-white font-bold rounded-xl shadow-lg flex items-center justify-center gap-2">
+      <i class="fa-solid fa-camera"></i> Scan Another
+    </button>
+  </div>
 </div>
 
+<!-- INSTALL MODAL -->
 <div id="install-modal" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-<div class="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-sm w-full text-center">
-<h3 class="font-bold text-lg mb-4 dark:text-white">Install App</h3>
-<div id="install-instructions" class="text-left text-sm space-y-3 mb-4 dark:text-gray-300"></div>
-<button id="close-install-modal" class="w-full py-2 bg-gray-200 dark:bg-slate-700 rounded-lg font-bold dark:text-white">Close</button>
-</div>
+  <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-sm w-full text-center">
+    <h3 class="font-bold text-lg mb-4 dark:text-white">Install App</h3>
+    <div id="install-instructions" class="text-left text-sm space-y-3 mb-4 dark:text-gray-300"></div>
+    <button onclick="closeInstallModal()" class="w-full py-2 bg-gray-200 dark:bg-slate-700 rounded-lg font-bold dark:text-white">Close</button>
+  </div>
 </div>
 
+<!-- MAIN APP -->
 <div id="main-app">
-<nav class="sticky top-0 z-40 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 shadow-sm">
-<div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<div class="w-9 h-9 gradient-bg rounded-lg flex items-center justify-center text-white font-bold shadow-md"><i class="fa-solid fa-qrcode"></i></div>
-<div>
-<h1 class="text-sm font-bold gradient-text leading-tight">QRCode Generator</h1>
-<p class="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">Rex International Technologies</p>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<button id="install-app-btn" class="px-3 py-2 gradient-bg text-white rounded-lg text-xs font-bold items-center gap-1 install-btn-pulse flex">
-<i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Install</span>
-</button>
-<button id="scanner-btn" class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
-<i class="fa-solid fa-qrcode text-primary text-sm"></i>
-</button>
-<button id="theme-toggle" class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
-<i class="fa-solid fa-moon dark:hidden text-gray-700 text-sm"></i>
-<i class="fa-solid fa-sun hidden dark:block text-yellow-400 text-sm"></i>
-</button>
-</div>
-</div>
-</nav>
+  <nav class="sticky top-0 z-40 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 shadow-sm">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-9 h-9 gradient-bg rounded-lg flex items-center justify-center text-white font-bold shadow-md"><i class="fa-solid fa-qrcode"></i></div>
+        <div>
+          <h1 class="text-sm font-bold gradient-text leading-tight">QRCode Generator</h1>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">Rex International Technologies</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="showInstallModal()" id="install-app-btn" class="px-3 py-2 gradient-bg text-white rounded-lg text-xs font-bold items-center gap-1 install-btn-pulse flex">
+          <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Install</span>
+        </button>
+        <button onclick="openScanner()" class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
+          <i class="fa-solid fa-qrcode text-primary text-sm"></i>
+        </button>
+        <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
+          <i class="fa-solid fa-moon dark:hidden text-gray-700 text-sm"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-yellow-400 text-sm"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-<main class="max-w-md mx-auto px-3 py-4 pb-24">
-<section class="mb-4">
-<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2" id="type-tabs"></div>
-</section>
+  <main class="max-w-md mx-auto px-3 py-4 pb-24">
+    <section class="mb-4">
+      <div class="flex gap-2 overflow-x-auto no-scrollbar pb-2" id="type-tabs">
+        <button onclick="switchTab('url')" id="tab-url" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 tab-active" data-type="url"><i class="fa-solid fa-link text-xs"></i><span>Website</span></button>
+        <button onclick="switchTab('text')" id="tab-text" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="text"><i class="fa-solid fa-font text-xs"></i><span>Text</span></button>
+        <button onclick="switchTab('phone')" id="tab-phone" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="phone"><i class="fa-solid fa-phone text-xs"></i><span>Phone</span></button>
+        <button onclick="switchTab('email')" id="tab-email" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="email"><i class="fa-solid fa-envelope text-xs"></i><span>Email</span></button>
+        <button onclick="switchTab('sms')" id="tab-sms" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="sms"><i class="fa-solid fa-comment-sms text-xs"></i><span>SMS</span></button>
+        <button onclick="switchTab('whatsapp')" id="tab-whatsapp" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="whatsapp"><i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span></button>
+        <button onclick="switchTab('telegram')" id="tab-telegram" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="telegram"><i class="fa-brands fa-telegram text-xs"></i><span>Telegram</span></button>
+        <button onclick="switchTab('wifi')" id="tab-wifi" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="wifi"><i class="fa-solid fa-wifi text-xs"></i><span>WiFi</span></button>
+        <button onclick="switchTab('vcard')" id="tab-vcard" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="vcard"><i class="fa-solid fa-address-card text-xs"></i><span>Contact</span></button>
+        <button onclick="switchTab('location')" id="tab-location" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="location"><i class="fa-solid fa-location-dot text-xs"></i><span>Location</span></button>
+        <button onclick="switchTab('event')" id="tab-event" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="event"><i class="fa-solid fa-calendar text-xs"></i><span>Event</span></button>
+        <button onclick="switchTab('payment')" id="tab-payment" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="payment"><i class="fa-solid fa-credit-card text-xs"></i><span>Payment</span></button>
+        <button onclick="switchTab('app')" id="tab-app" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="app"><i class="fa-solid fa-mobile-screen text-xs"></i><span>App</span></button>
+        <button onclick="switchTab('menu')" id="tab-menu" class="tab-btn flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700" data-type="menu"><i class="fa-solid fa-utensils text-xs"></i><span>Menu</span></button>
+      </div>
+    </section>
 
-<section class="space-y-4">
-<div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-pen-to-square text-sm"></i></div>
-<h3 class="text-sm font-bold dark:text-white">Enter Your Data</h3>
-</div>
-<div id="dynamic-form" class="space-y-3 animate-fade-in"></div>
+    <section class="space-y-4">
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-pen-to-square text-sm"></i></div>
+          <h3 class="text-sm font-bold dark:text-white">Enter Your Data</h3>
+        </div>
+        <div id="dynamic-form" class="space-y-3 animate-fade-in">
+          <div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Website URL</label><input type="url" id="f-url" placeholder="https://example.com" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div>
+        </div>
+        
+        <div class="mt-4 pt-4 border-t border-gray-100 dark:border-slate-700">
+          <label class="flex items-center gap-3 cursor-pointer p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl border border-indigo-100 dark:border-indigo-800">
+            <input type="checkbox" id="protect-toggle" onchange="toggleProtect()" class="w-5 h-5 accent-primary rounded" />
+            <div class="flex-1">
+              <p class="font-semibold text-sm text-indigo-900 dark:text-indigo-200 flex items-center gap-2"><i class="fa-solid fa-lock"></i> Protect with Password</p>
+              <p class="text-[10px] text-indigo-700 dark:text-indigo-400 mt-0.5">Requires password to view content when scanned</p>
+            </div>
+          </label>
+          <div id="password-input-wrapper" class="hidden mt-3">
+            <label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Set Password</label>
+            <input type="password" id="protect-password" placeholder="Enter a strong password" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" />
+            <p class="text-[10px] text-gray-500 mt-1">⚠️ Remember this password! It cannot be recovered.</p>
+          </div>
+        </div>
+      </div>
 
-<div class="mt-4 pt-4 border-t border-gray-100 dark:border-slate-700">
-<label class="flex items-center gap-3 cursor-pointer p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl border border-indigo-100 dark:border-indigo-800">
-<input type="checkbox" id="protect-toggle" class="w-5 h-5 accent-primary rounded" />
-<div class="flex-1">
-<p class="font-semibold text-sm text-indigo-900 dark:text-indigo-200 flex items-center gap-2"><i class="fa-solid fa-lock"></i> Protect with Password</p>
-<p class="text-[10px] text-indigo-700 dark:text-indigo-400 mt-0.5">Requires password to view content when scanned</p>
-</div>
-</label>
-<div id="password-input-wrapper" class="hidden mt-3">
-<label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Set Password</label>
-<input type="password" id="protect-password" placeholder="Enter a strong password" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" />
-<p class="text-[10px] text-gray-500 mt-1">⚠️ Remember this password! It cannot be recovered.</p>
-</div>
-</div>
-</div>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-palette text-sm"></i></div>
+          <h3 class="text-sm font-bold dark:text-white">Customize</h3>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold mb-2 dark:text-gray-200">QR Code Color</label>
+            <div class="flex flex-wrap gap-2" id="fg-colors">
+              <div onclick="setFgColor('#000000', this)" class="color-swatch selected" style="background:#000000"></div>
+              <div onclick="setFgColor('#1e3a8a', this)" class="color-swatch" style="background:#1e3a8a"></div>
+              <div onclick="setFgColor('#6366f1', this)" class="color-swatch" style="background:#6366f1"></div>
+              <div onclick="setFgColor('#7c3aed', this)" class="color-swatch" style="background:#7c3aed"></div>
+              <div onclick="setFgColor('#581c87', this)" class="color-swatch" style="background:#581c87"></div>
+              <div onclick="setFgColor('#831843', this)" class="color-swatch" style="background:#831843"></div>
+              <div onclick="setFgColor('#991b1b', this)" class="color-swatch" style="background:#991b1b"></div>
+              <div onclick="setFgColor('#9a3412', this)" class="color-swatch" style="background:#9a3412"></div>
+              <div onclick="setFgColor('#065f46', this)" class="color-swatch" style="background:#065f46"></div>
+              <div onclick="setFgColor('#134e4a', this)" class="color-swatch" style="background:#134e4a"></div>
+              <div onclick="setFgColor('#1e293b', this)" class="color-swatch" style="background:#1e293b"></div>
+              <div onclick="setFgColor('#451a03', this)" class="color-swatch" style="background:#451a03"></div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2 dark:text-gray-200">Background Color</label>
+            <div class="flex flex-wrap gap-2" id="bg-colors">
+              <div onclick="setBgColor('#f3f4f6', this)" class="color-swatch light-swatch selected" style="background:#f3f4f6;border:1px solid #e5e7eb"></div>
+              <div onclick="setBgColor('#e5e7eb', this)" class="color-swatch light-swatch" style="background:#e5e7eb"></div>
+              <div onclick="setBgColor('#ddd6fe', this)" class="color-swatch light-swatch" style="background:#ddd6fe"></div>
+              <div onclick="setBgColor('#c7d2fe', this)" class="color-swatch light-swatch" style="background:#c7d2fe"></div>
+              <div onclick="setBgColor('#fbcfe8', this)" class="color-swatch light-swatch" style="background:#fbcfe8"></div>
+              <div onclick="setBgColor('#fecaca', this)" class="color-swatch light-swatch" style="background:#fecaca"></div>
+              <div onclick="setBgColor('#fed7aa', this)" class="color-swatch light-swatch" style="background:#fed7aa"></div>
+              <div onclick="setBgColor('#bbf7d0', this)" class="color-swatch light-swatch" style="background:#bbf7d0"></div>
+              <div onclick="setBgColor('#a7f3d0', this)" class="color-swatch light-swatch" style="background:#a7f3d0"></div>
+              <div onclick="setBgColor('#bae6fd', this)" class="color-swatch light-swatch" style="background:#bae6fd"></div>
+              <button onclick="toggleBgTransparent()" id="bg-transparent-btn" class="w-9 h-9 rounded-lg border-2 border-dashed border-gray-300 dark:border-slate-600 flex items-center justify-center text-xs font-bold text-gray-500"><i class="fa-solid fa-square-check"></i></button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2 dark:text-gray-200">Dot Shape</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setDotStyle('rounded', this)" class="dot-style-btn p-2 rounded-lg border-2 border-primary bg-primary/10 text-xs font-semibold dark:text-white" data-style="rounded">Rounded</button>
+              <button onclick="setDotStyle('dots', this)" class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="dots">Dots</button>
+              <button onclick="setDotStyle('classy', this)" class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="classy">Classy</button>
+              <button onclick="setDotStyle('classy-rounded', this)" class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="classy-rounded">Classy Round</button>
+              <button onclick="setDotStyle('square', this)" class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="square">Square</button>
+              <button onclick="setDotStyle('extra-rounded', this)" class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="extra-rounded">Extra Round</button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2 dark:text-gray-200">Corner Style</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setCornerStyle('square', this)" class="corner-btn p-2 rounded-lg border-2 border-primary bg-primary/10 text-xs font-semibold dark:text-white" data-style="square">Square</button>
+              <button onclick="setCornerStyle('dot', this)" class="corner-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="dot">Dot</button>
+              <button onclick="setCornerStyle('extra-rounded', this)" class="corner-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="extra-rounded">Round</button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2 dark:text-gray-200">Error Correction</label>
+            <div class="grid grid-cols-4 gap-2">
+              <button onclick="setEC('L', this)" class="ec-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-ec="L">Low</button>
+              <button onclick="setEC('M', this)" class="ec-btn p-2 rounded-lg border-2 border-primary bg-primary/10 text-xs font-semibold dark:text-white" data-ec="M">Medium</button>
+              <button onclick="setEC('Q', this)" class="ec-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-ec="Q">Quartile</button>
+              <button onclick="setEC('H', this)" class="ec-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-ec="H">High</button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2 dark:text-gray-200">Size: <span id="size-val" class="text-primary">500</span>px</label>
+            <input type="range" id="qr-size" min="250" max="2000" value="500" step="50" class="w-full accent-primary" oninput="document.getElementById('size-val').textContent = this.value" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2 dark:text-gray-200">Logo (Optional)</label>
+            <input type="file" id="logo-input" accept="image/*" onchange="handleLogoUpload(this)" class="w-full text-xs p-2 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white" />
+            <div id="logo-preview-container" class="hidden mt-2 flex items-center gap-2 p-2 bg-gray-50 dark:bg-slate-900 rounded-lg">
+              <img id="logo-preview" class="w-10 h-10 object-contain rounded bg-white p-1" />
+              <span class="text-xs text-green-600 font-semibold flex-1">Logo loaded!</span>
+              <button onclick="removeLogo()" class="text-xs text-red-500 font-semibold">Remove</button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2 dark:text-gray-200">Frame Text (Optional)</label>
+            <input type="text" id="cta-text" placeholder="e.g., SCAN ME, LIPA HAPA" class="w-full p-2.5 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" />
+          </div>
+        </div>
+      </div>
 
-<div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-palette text-sm"></i></div>
-<h3 class="text-sm font-bold dark:text-white">Customize</h3>
-</div>
-<div class="space-y-4">
-<div>
-<label class="block text-xs font-semibold mb-2 dark:text-gray-200">QR Code Color</label>
-<div class="flex flex-wrap gap-2" id="fg-colors">
-<div class="color-swatch selected" data-color="#000000" style="background:#000000"></div>
-<div class="color-swatch" data-color="#1e3a8a" style="background:#1e3a8a"></div>
-<div class="color-swatch" data-color="#6366f1" style="background:#6366f1"></div>
-<div class="color-swatch" data-color="#7c3aed" style="background:#7c3aed"></div>
-<div class="color-swatch" data-color="#581c87" style="background:#581c87"></div>
-<div class="color-swatch" data-color="#831843" style="background:#831843"></div>
-<div class="color-swatch" data-color="#991b1b" style="background:#991b1b"></div>
-<div class="color-swatch" data-color="#9a3412" style="background:#9a3412"></div>
-<div class="color-swatch" data-color="#065f46" style="background:#065f46"></div>
-<div class="color-swatch" data-color="#134e4a" style="background:#134e4a"></div>
-<div class="color-swatch" data-color="#1e293b" style="background:#1e293b"></div>
-<div class="color-swatch" data-color="#451a03" style="background:#451a03"></div>
-</div>
-</div>
-<div>
-<label class="block text-xs font-semibold mb-2 dark:text-gray-200">Background Color</label>
-<div class="flex flex-wrap gap-2" id="bg-colors">
-<div class="color-swatch light-swatch selected" data-color="#f3f4f6" style="background:#f3f4f6;border:1px solid #e5e7eb"></div>
-<div class="color-swatch light-swatch" data-color="#e5e7eb" style="background:#e5e7eb"></div>
-<div class="color-swatch light-swatch" data-color="#ddd6fe" style="background:#ddd6fe"></div>
-<div class="color-swatch light-swatch" data-color="#c7d2fe" style="background:#c7d2fe"></div>
-<div class="color-swatch light-swatch" data-color="#fbcfe8" style="background:#fbcfe8"></div>
-<div class="color-swatch light-swatch" data-color="#fecaca" style="background:#fecaca"></div>
-<div class="color-swatch light-swatch" data-color="#fed7aa" style="background:#fed7aa"></div>
-<div class="color-swatch light-swatch" data-color="#bbf7d0" style="background:#bbf7d0"></div>
-<div class="color-swatch light-swatch" data-color="#a7f3d0" style="background:#a7f3d0"></div>
-<div class="color-swatch light-swatch" data-color="#bae6fd" style="background:#bae6fd"></div>
-<button id="bg-transparent-btn" class="w-9 h-9 rounded-lg border-2 border-dashed border-gray-300 dark:border-slate-600 flex items-center justify-center text-xs font-bold text-gray-500"><i class="fa-solid fa-square-check"></i></button>
-</div>
-</div>
-<div>
-<label class="block text-xs font-semibold mb-2 dark:text-gray-200">Dot Shape</label>
-<div class="grid grid-cols-3 gap-2">
-<button class="dot-style-btn p-2 rounded-lg border-2 border-primary bg-primary/10 text-xs font-semibold dark:text-white" data-style="rounded">Rounded</button>
-<button class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="dots">Dots</button>
-<button class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="classy">Classy</button>
-<button class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="classy-rounded">Classy Round</button>
-<button class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="square">Square</button>
-<button class="dot-style-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="extra-rounded">Extra Round</button>
-</div>
-</div>
-<div>
-<label class="block text-xs font-semibold mb-2 dark:text-gray-200">Corner Style</label>
-<div class="grid grid-cols-3 gap-2">
-<button class="corner-btn p-2 rounded-lg border-2 border-primary bg-primary/10 text-xs font-semibold dark:text-white" data-style="square">Square</button>
-<button class="corner-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="dot">Dot</button>
-<button class="corner-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-style="extra-rounded">Round</button>
-</div>
-</div>
-<div>
-<label class="block text-xs font-semibold mb-2 dark:text-gray-200">Error Correction</label>
-<div class="grid grid-cols-4 gap-2">
-<button class="ec-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-ec="L">Low</button>
-<button class="ec-btn p-2 rounded-lg border-2 border-primary bg-primary/10 text-xs font-semibold dark:text-white" data-ec="M">Medium</button>
-<button class="ec-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-ec="Q">Quartile</button>
-<button class="ec-btn p-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 text-xs font-semibold dark:text-white" data-ec="H">High</button>
-</div>
-</div>
-<div>
-<label class="block text-xs font-semibold mb-2 dark:text-gray-200">Size: <span id="size-val" class="text-primary">500</span>px</label>
-<input type="range" id="qr-size" min="250" max="2000" value="500" step="50" class="w-full accent-primary" />
-</div>
-<div>
-<label class="block text-xs font-semibold mb-2 dark:text-gray-200">Logo (Optional)</label>
-<input type="file" id="logo-input" accept="image/*" class="w-full text-xs p-2 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white" />
-<div id="logo-preview-container" class="hidden mt-2 flex items-center gap-2 p-2 bg-gray-50 dark:bg-slate-900 rounded-lg">
-<img id="logo-preview" class="w-10 h-10 object-contain rounded bg-white p-1" />
-<span class="text-xs text-green-600 font-semibold flex-1">Logo loaded!</span>
-<button id="remove-logo" class="text-xs text-red-500 font-semibold">Remove</button>
-</div>
-</div>
-<div>
-<label class="block text-xs font-semibold mb-2 dark:text-gray-200">Frame Text (Optional)</label>
-<input type="text" id="cta-text" placeholder="e.g., SCAN ME, LIPA HAPA" class="w-full p-2.5 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" />
-</div>
-</div>
-</div>
+      <button onclick="generateQR()" class="w-full py-4 btn-primary text-white font-bold text-base rounded-2xl shadow-lg flex items-center justify-center gap-2"><i class="fa-solid fa-bolt"></i> Generate QR Code</button>
 
-<button id="generate-btn" class="w-full py-4 btn-primary text-white font-bold text-base rounded-2xl shadow-lg flex items-center justify-center gap-2"><i class="fa-solid fa-bolt"></i> Generate QR Code</button>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-layer-group text-sm"></i></div>
+          <h3 class="text-sm font-bold dark:text-white">Bulk Generator</h3>
+        </div>
+        <textarea id="bulk-input" rows="4" placeholder="https://example.com&#10;https://google.com" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm mb-3"></textarea>
+        <label class="block cursor-pointer mb-3">
+          <input type="file" id="bulk-csv" accept=".csv,.txt" onchange="handleBulkFile(this)" class="hidden" />
+          <div class="p-2.5 border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-lg text-center text-xs hover:border-primary transition-colors dark:text-white"><i class="fa-solid fa-upload mr-1"></i> Upload File</div>
+        </label>
+        <button onclick="bulkGenerate()" class="w-full py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-file-zipper"></i> Generate ZIP</button>
+      </div>
+    </section>
 
-<div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
-<div class="flex items-center gap-2 mb-3">
-<div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-layer-group text-sm"></i></div>
-<h3 class="text-sm font-bold dark:text-white">Bulk Generator</h3>
-</div>
-<textarea id="bulk-input" rows="4" placeholder="https://example.com https://google.com" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm mb-3"></textarea>
-<label class="block cursor-pointer mb-3">
-<input type="file" id="bulk-csv" accept=".csv,.txt" class="hidden" />
-<div class="p-2.5 border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-lg text-center text-xs hover:border-primary transition-colors dark:text-white"><i class="fa-solid fa-upload mr-1"></i> Upload File</div>
-</label>
-<button id="bulk-generate-btn" class="w-full py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-file-zipper"></i> Generate ZIP</button>
-</div>
-</section>
+    <section class="space-y-4 mt-4">
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-eye text-sm"></i></div>
+          <h3 class="text-sm font-bold dark:text-white">Preview</h3>
+        </div>
+        <div class="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 mb-4 flex items-center justify-center min-h-[260px]" id="qr-container">
+          <div class="text-center text-gray-400"><i class="fa-solid fa-qrcode text-5xl mb-2 opacity-30"></i><p class="text-sm">Your QR code will appear here</p></div>
+        </div>
+        <div id="action-buttons" class="hidden space-y-3">
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="downloadQR('png')" class="action-btn py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-download"></i> PNG</button>
+            <button onclick="downloadQR('svg')" class="action-btn py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-file-code"></i> SVG</button>
+            <button onclick="copyQR()" class="action-btn py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-copy"></i> Copy</button>
+            <button onclick="shareNative()" class="action-btn py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-share-nodes"></i> Share</button>
+          </div>
+          <div class="border-t border-gray-200 dark:border-slate-700 pt-3">
+            <p class="text-xs font-semibold mb-2 dark:text-gray-200">Share via:</p>
+            <div class="grid grid-cols-6 gap-2">
+              <button onclick="socialShare('whatsapp')" class="share-social py-2.5 bg-green-500 text-white rounded-lg flex items-center justify-center"><i class="fa-brands fa-whatsapp text-lg"></i></button>
+              <button onclick="socialShare('facebook')" class="share-social py-2.5 bg-blue-600 text-white rounded-lg flex items-center justify-center"><i class="fa-brands fa-facebook-f text-lg"></i></button>
+              <button onclick="socialShare('twitter')" class="share-social py-2.5 bg-black text-white rounded-lg flex items-center justify-center"><i class="fa-brands fa-x-twitter text-lg"></i></button>
+              <button onclick="socialShare('linkedin')" class="share-social py-2.5 bg-blue-700 text-white rounded-lg flex items-center justify-center"><i class="fa-brands fa-linkedin-in text-lg"></i></button>
+              <button onclick="socialShare('telegram')" class="share-social py-2.5 bg-sky-500 text-white rounded-lg flex items-center justify-center"><i class="fa-brands fa-telegram text-lg"></i></button>
+              <button onclick="socialShare('email')" class="share-social py-2.5 bg-red-500 text-white rounded-lg flex items-center justify-center"><i class="fa-solid fa-envelope text-lg"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<section class="space-y-4 mt-4">
-<div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-eye text-sm"></i></div>
-<h3 class="text-sm font-bold dark:text-white">Preview</h3>
-</div>
-<div class="bg-gray-100 dark:bg-slate-900 rounded-xl p-4 mb-4 flex items-center justify-center min-h-[260px]" id="qr-container">
-<div class="text-center text-gray-400"><i class="fa-solid fa-qrcode text-5xl mb-2 opacity-30"></i><p class="text-sm">Your QR code will appear here</p></div>
-</div>
-<div id="action-buttons" class="hidden space-y-3">
-<div class="grid grid-cols-2 gap-2">
-<button id="download-png" class="action-btn py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-download"></i> PNG</button>
-<button id="download-svg" class="action-btn py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-file-code"></i> SVG</button>
-<button id="copy-qr" class="action-btn py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-copy"></i> Copy</button>
-<button id="share-qr" class="action-btn py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl flex items-center justify-center gap-2 text-sm"><i class="fa-solid fa-share-nodes"></i> Share</button>
-</div>
-<div class="border-t border-gray-200 dark:border-slate-700 pt-3">
-<p class="text-xs font-semibold mb-2 dark:text-gray-200">Share via:</p>
-<div class="grid grid-cols-6 gap-2">
-<button class="share-social py-2.5 bg-green-500 text-white rounded-lg flex items-center justify-center" data-platform="whatsapp"><i class="fa-brands fa-whatsapp text-lg"></i></button>
-<button class="share-social py-2.5 bg-blue-600 text-white rounded-lg flex items-center justify-center" data-platform="facebook"><i class="fa-brands fa-facebook-f text-lg"></i></button>
-<button class="share-social py-2.5 bg-black text-white rounded-lg flex items-center justify-center" data-platform="twitter"><i class="fa-brands fa-x-twitter text-lg"></i></button>
-<button class="share-social py-2.5 bg-blue-700 text-white rounded-lg flex items-center justify-center" data-platform="linkedin"><i class="fa-brands fa-linkedin-in text-lg"></i></button>
-<button class="share-social py-2.5 bg-sky-500 text-white rounded-lg flex items-center justify-center" data-platform="telegram"><i class="fa-brands fa-telegram text-lg"></i></button>
-<button class="share-social py-2.5 bg-red-500 text-white rounded-lg flex items-center justify-center" data-platform="email"><i class="fa-solid fa-envelope text-lg"></i></button>
-</div>
-</div>
-</div>
-</div>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-chart-pie text-sm"></i></div>
+          <h3 class="text-sm font-bold dark:text-white">Your Analytics Dashboard</h3>
+        </div>
+        <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+          <div class="p-3 bg-gray-50 dark:bg-slate-900 rounded-xl">
+            <p id="stat-total" class="text-xl font-bold text-primary">0</p>
+            <p class="text-[10px] text-gray-500">Total Generated</p>
+          </div>
+          <div class="p-3 bg-gray-50 dark:bg-slate-900 rounded-xl">
+            <p id="stat-protected" class="text-xl font-bold text-red-500">0</p>
+            <p class="text-[10px] text-gray-500">Protected</p>
+          </div>
+          <div class="p-3 bg-gray-50 dark:bg-slate-900 rounded-xl">
+            <p id="stat-menu" class="text-xl font-bold text-green-500">0</p>
+            <p class="text-[10px] text-gray-500">Menus</p>
+          </div>
+        </div>
+        <div class="relative h-48 w-full">
+          <canvas id="analytics-chart"></canvas>
+        </div>
+      </div>
 
-<div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-chart-pie text-sm"></i></div>
-<h3 class="text-sm font-bold dark:text-white">Your Analytics Dashboard</h3>
-</div>
-<div class="grid grid-cols-3 gap-2 mb-4 text-center">
-<div class="p-3 bg-gray-50 dark:bg-slate-900 rounded-xl">
-<p id="stat-total" class="text-xl font-bold text-primary">0</p>
-<p class="text-[10px] text-gray-500">Total Generated</p>
-</div>
-<div class="p-3 bg-gray-50 dark:bg-slate-900 rounded-xl">
-<p id="stat-protected" class="text-xl font-bold text-red-500">0</p>
-<p class="text-[10px] text-gray-500">Protected</p>
-</div>
-<div class="p-3 bg-gray-50 dark:bg-slate-900 rounded-xl">
-<p id="stat-menu" class="text-xl font-bold text-green-500">0</p>
-<p class="text-[10px] text-gray-500">Menus</p>
-</div>
-</div>
-<div class="relative h-48 w-full">
-<canvas id="analytics-chart"></canvas>
-</div>
-</div>
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-clock-rotate-left text-sm"></i></div>
+            <h3 class="text-sm font-bold dark:text-white">History</h3>
+          </div>
+          <button onclick="clearHistory()" class="text-xs text-red-500 font-semibold"><i class="fa-solid fa-trash mr-1"></i> Clear</button>
+        </div>
+        <div id="history-grid" class="grid grid-cols-3 gap-2 max-h-60 overflow-y-auto custom-scrollbar">
+          <p class="col-span-full text-center text-gray-400 py-6 text-xs">No history yet</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-slate-700">
-<div class="flex items-center justify-between mb-3">
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-clock-rotate-left text-sm"></i></div>
-<h3 class="text-sm font-bold dark:text-white">History</h3>
-</div>
-<button id="clear-history" class="text-xs text-red-500 font-semibold"><i class="fa-solid fa-trash mr-1"></i> Clear</button>
-</div>
-<div id="history-grid" class="grid grid-cols-3 gap-2 max-h-60 overflow-y-auto custom-scrollbar">
-<p class="col-span-full text-center text-gray-400 py-6 text-xs">No history yet</p>
-</div>
-</div>
-</section>
-</main>
+  <!-- FULL-SCREEN SCANNER -->
+  <div id="scanner-modal" class="fixed inset-0 z-50 hidden bg-black flex flex-col">
+    <div class="bg-black/90 backdrop-blur-sm p-4 flex justify-between items-center border-b border-gray-800">
+      <h3 class="text-white font-bold text-lg"><i class="fa-solid fa-qrcode mr-2"></i>Scan QR Code</h3>
+      <button onclick="closeScanner()" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+    </div>
+    <div class="flex-1 relative bg-black overflow-hidden">
+      <video id="camera-video" autoplay playsinline muted></video>
+      <canvas id="camera-canvas" class="hidden"></canvas>
+      
+      <div class="scan-overlay absolute inset-0 flex items-center justify-center">
+        <div class="w-64 h-64 border-2 border-white/60 rounded-2xl relative">
+          <div class="absolute -top-1 -left-1 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+          <div class="absolute -top-1 -right-1 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+          <div class="absolute -bottom-1 -left-1 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+          <div class="absolute -bottom-1 -right-1 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+        </div>
+      </div>
 
-<div id="scanner-modal" class="fixed inset-0 z-50 hidden bg-black flex flex-col">
-<div class="bg-black/90 backdrop-blur-sm p-4 flex justify-between items-center border-b border-gray-800">
-<h3 class="text-white font-bold text-lg"><i class="fa-solid fa-qrcode mr-2"></i>Scan QR Code</h3>
-<button id="close-scanner" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-</div>
-<div class="flex-1 relative bg-black overflow-hidden">
-<video id="camera-video" autoplay playsinline muted></video>
-<canvas id="camera-canvas" class="hidden"></canvas>
+      <div class="absolute bottom-6 left-0 right-0 flex justify-center">
+        <label class="px-6 py-3 bg-white/95 text-gray-900 rounded-full font-bold text-sm flex items-center gap-2 cursor-pointer shadow-2xl">
+          <i class="fa-solid fa-image text-lg"></i>
+          <span>Gallery</span>
+          <input type="file" id="gallery-input" accept="image/*" onchange="handleGalleryUpload(this)" class="hidden" />
+        </label>
+      </div>
 
-<div class="scan-overlay absolute inset-0 flex items-center justify-center">
-<div class="w-64 h-64 border-2 border-white/60 rounded-2xl relative">
-<div class="absolute -top-1 -left-1 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
-<div class="absolute -top-1 -right-1 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
-<div class="absolute -bottom-1 -left-1 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
-<div class="absolute -bottom-1 -right-1 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
-</div>
-</div>
+      <div id="scan-loading" class="hidden absolute inset-0 bg-black/70 flex items-center justify-center">
+        <div class="text-white text-center">
+          <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-2"></i>
+          <p>Scanning...</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="absolute bottom-6 left-0 right-0 flex justify-center">
-<label class="px-6 py-3 bg-white/95 text-gray-900 rounded-full font-bold text-sm flex items-center gap-2 cursor-pointer shadow-2xl">
-<i class="fa-solid fa-image text-lg"></i>
-<span>Gallery</span>
-<input type="file" id="gallery-input" accept="image/*" class="hidden" />
-</label>
-</div>
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden"></div>
 
-<div id="scan-loading" class="hidden absolute inset-0 bg-black/70 flex items-center justify-center">
-<div class="text-white text-center">
-<i class="fa-solid fa-circle-notch fa-spin text-4xl mb-2"></i>
-<p>Scanning...</p>
-</div>
-</div>
-</div>
-</div>
-
-<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden"></div>
-
-<footer class="border-t border-gray-200 dark:border-slate-700 py-6 mt-8">
-<div class="max-w-md mx-auto px-4 text-center">
-<p class="text-gray-600 dark:text-gray-400 text-sm">© 2026 <span class="font-bold gradient-text">Rex International Technologies</span></p>
-<p class="text-xs text-gray-500 mt-1">Create beautiful QR codes instantly</p>
-</div>
-</footer>
+  <footer class="border-t border-gray-200 dark:border-slate-700 py-6 mt-8">
+    <div class="max-w-md mx-auto px-4 text-center">
+      <p class="text-gray-600 dark:text-gray-400 text-sm">© 2026 <span class="font-bold gradient-text">Rex International Technologies</span></p>
+      <p class="text-xs text-gray-500 mt-1">Create beautiful QR codes instantly</p>
+    </div>
+  </footer>
 </div>
 
 <script>
-const state = {
-currentType: 'url', qrCode: null, currentData: '',
-dotStyle: 'rounded', cornerStyle: 'square', errorCorrection: 'M',
-logoBase64: null, fgColor: '#000000', bgColor: '#f3f4f6', bgTransparent: false,
-isProtected: false
+// ============ STATE ============
+const state = { 
+  currentType: 'url', qrCode: null, currentData: '', 
+  dotStyle: 'rounded', cornerStyle: 'square', errorCorrection: 'M', 
+  logoBase64: null, fgColor: '#000000', bgColor: '#f3f4f6', bgTransparent: false,
+  isProtected: false
 };
 
 const qrTypes = [
-{ id: 'url', label: 'Website', icon: 'fa-link' }, { id: 'text', label: 'Text', icon: 'fa-font' }, { id: 'phone', label: 'Phone', icon: 'fa-phone' }, { id: 'email', label: 'Email', icon: 'fa-envelope' },
-{ id: 'sms', label: 'SMS', icon: 'fa-comment-sms' }, { id: 'whatsapp', label: 'WhatsApp', icon: 'fa-whatsapp' }, { id: 'telegram', label: 'Telegram', icon: 'fa-telegram' }, { id: 'wifi', label: 'WiFi', icon: 'fa-wifi' },
-{ id: 'vcard', label: 'Contact', icon: 'fa-address-card' }, { id: 'location', label: 'Location', icon: 'fa-location-dot' }, { id: 'event', label: 'Event', icon: 'fa-calendar' },
-{ id: 'payment', label: 'Payment', icon: 'fa-credit-card' }, { id: 'app', label: 'App', icon: 'fa-mobile-screen' }, { id: 'menu', label: 'Menu', icon: 'fa-utensils' }
+  { id: 'url', label: 'Website', icon: 'fa-link' }, { id: 'text', label: 'Text', icon: 'fa-font' }, { id: 'phone', label: 'Phone', icon: 'fa-phone' }, { id: 'email', label: 'Email', icon: 'fa-envelope' },
+  { id: 'sms', label: 'SMS', icon: 'fa-comment-sms' }, { id: 'whatsapp', label: 'WhatsApp', icon: 'fa-whatsapp' }, { id: 'telegram', label: 'Telegram', icon: 'fa-telegram' }, { id: 'wifi', label: 'WiFi', icon: 'fa-wifi' },
+  { id: 'vcard', label: 'Contact', icon: 'fa-address-card' }, { id: 'location', label: 'Location', icon: 'fa-location-dot' }, { id: 'event', label: 'Event', icon: 'fa-calendar' },
+  { id: 'payment', label: 'Payment', icon: 'fa-credit-card' }, { id: 'app', label: 'App', icon: 'fa-mobile-screen' }, { id: 'menu', label: 'Menu', icon: 'fa-utensils' }
 ];
 
 const formTemplates = {
-url: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Website URL&lt;/label&gt;&lt;input type="url" id="f-url" placeholder="https://example.com" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div>,
-text: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Your Text&lt;/label&gt;&lt;textarea id="f-text" rows="4" placeholder="Type any text..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"&gt;&lt;/textarea&gt;&lt;/div>,
-phone: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Phone Number&lt;/label&gt;&lt;input type="tel" id="f-phone" placeholder="+255 7XX XXX XXX" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div>,
-email: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Email Address&lt;/label&gt;&lt;input type="email" id="f-email" placeholder="name@example.com" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Subject&lt;/label&gt;&lt;input type="text" id="f-email-subject" placeholder="Email subject" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Message&lt;/label&gt;&lt;textarea id="f-email-body" rows="3" placeholder="Email body..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"&gt;&lt;/textarea&gt;&lt;/div>,
-sms: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Phone Number&lt;/label&gt;&lt;input type="tel" id="f-sms-phone" placeholder="+255..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Message&lt;/label&gt;&lt;textarea id="f-sms-msg" rows="3" placeholder="Your message..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"&gt;&lt;/textarea&gt;&lt;/div>,
-whatsapp: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Phone Number (with country code)&lt;/label&gt;&lt;input type="tel" id="f-wa-phone" placeholder="255712345678" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Pre-filled Message&lt;/label&gt;&lt;textarea id="f-wa-msg" rows="3" placeholder="Hello!" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"&gt;&lt;/textarea&gt;&lt;/div>,
-telegram: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Telegram Username or Phone&lt;/label&gt;&lt;input type="text" id="f-tg-user" placeholder="@username or +255..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Pre-filled Message&lt;/label&gt;&lt;textarea id="f-tg-msg" rows="3" placeholder="Your message..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"&gt;&lt;/textarea&gt;&lt;/div>,
-wifi: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Network Name (SSID)&lt;/label&gt;&lt;input type="text" id="f-wifi-ssid" placeholder="MyWiFi" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Password&lt;/label&gt;&lt;input type="text" id="f-wifi-pass" placeholder="Password" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Encryption&lt;/label&gt;&lt;select id="f-wifi-enc" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"&gt;&lt;option value="WPA"&gt;WPA/WPA2&lt;/option&gt;&lt;option value="WEP"&gt;WEP&lt;/option&gt;&lt;option value="nopass"&gt;None (Open)&lt;/option&gt;&lt;/select&gt;&lt;/div>,
-vcard: <div class="grid grid-cols-2 gap-2"&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;First Name&lt;/label&gt;&lt;input type="text" id="f-vc-fn" placeholder="John" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Last Name&lt;/label&gt;&lt;input type="text" id="f-vc-ln" placeholder="Doe" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Phone&lt;/label&gt;&lt;input type="tel" id="f-vc-phone" placeholder="+255..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Email&lt;/label&gt;&lt;input type="email" id="f-vc-email" placeholder="john@example.com" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Company&lt;/label&gt;&lt;input type="text" id="f-vc-company" placeholder="Rex International" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Job Title&lt;/label&gt;&lt;input type="text" id="f-vc-title" placeholder="CEO" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div>,
-location: <div class="grid grid-cols-2 gap-2"&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Latitude&lt;/label&gt;&lt;input type="number" step="any" id="f-loc-lat" placeholder="-6.7924" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Longitude&lt;/label&gt;&lt;input type="number" step="any" id="f-loc-lng" placeholder="39.2083" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;/div&gt;&lt;button id="use-current-loc" class="w-full py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-lg text-xs font-semibold"&gt;&lt;i class="fa-solid fa-location-crosshairs mr-1"&gt;&lt;/i&gt; Use My Current Location&lt;/button>,
-event: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Event Title&lt;/label&gt;&lt;input type="text" id="f-ev-title" placeholder="Birthday Party" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Description&lt;/label&gt;&lt;textarea id="f-ev-desc" rows="2" placeholder="Event description..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"&gt;&lt;/textarea&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Location&lt;/label&gt;&lt;input type="text" id="f-ev-location" placeholder="Venue name" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div class="grid grid-cols-2 gap-2"&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Start&lt;/label&gt;&lt;input type="datetime-local" id="f-ev-start" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;End&lt;/label&gt;&lt;input type="datetime-local" id="f-ev-end" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;/div>,
-payment: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Payment Type&lt;/label&gt;&lt;select id="f-pay-type" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"&gt;&lt;option value="mpesa"&gt;M-Pesa (Lipa Namba)&lt;/option&gt;&lt;option value="tigo"&gt;Tigo Pesa&lt;/option&gt;&lt;option value="airtel"&gt;Airtel Money&lt;/option&gt;&lt;option value="bank"&gt;Bank Transfer&lt;/option&gt;&lt;option value="paypal"&gt;PayPal&lt;/option&gt;&lt;option value="stripe"&gt;Stripe&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div id="pay-mobile-fields"&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Till/Merchant Number&lt;/label&gt;&lt;input type="text" id="f-pay-number" placeholder="123456" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Amount&lt;/label&gt;&lt;input type="number" id="f-pay-amount" placeholder="10000" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Reference / Name&lt;/label&gt;&lt;input type="text" id="f-pay-ref" placeholder="John Doe" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id="pay-bank-fields" class="hidden"&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Bank Name&lt;/label&gt;&lt;input type="text" id="f-pay-bank" placeholder="CRDB Bank" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Account Name&lt;/label&gt;&lt;input type="text" id="f-pay-bank-name" placeholder="Rex International Ltd" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Account Number / IBAN&lt;/label&gt;&lt;input type="text" id="f-pay-bank-acc" placeholder="0123456789" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id="pay-link-fields" class="hidden"&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Payment Link URL&lt;/label&gt;&lt;input type="url" id="f-pay-link" placeholder="https://paypal.me/..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;/div>,
-app: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;App Name&lt;/label&gt;&lt;input type="text" id="f-app-name" placeholder="My Awesome App" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;iOS App Store URL&lt;/label&gt;&lt;input type="url" id="f-app-ios" placeholder="https://apps.apple.com/app/..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Android Play Store URL&lt;/label&gt;&lt;input type="url" id="f-app-android" placeholder="https://play.google.com/store/apps/..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div>,
-menu: <div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Business/Restaurant Name&lt;/label&gt;&lt;input type="text" id="f-menu-title" placeholder="Rex Restaurant" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-xs font-semibold mb-1.5 dark:text-gray-200"&gt;Menu Items (One per line: Name | Price | Description)&lt;/label&gt;&lt;textarea id="f-menu-items" rows="6" placeholder="Burger | 5000 | Juicy beef burger&#10;Pizza | 8000 | Large cheese pizza" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm font-mono"&gt;&lt;/textarea&gt;&lt;/div>
+  url: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Website URL</label><input type="url" id="f-url" placeholder="https://example.com" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div>',
+  text: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Your Text</label><textarea id="f-text" rows="4" placeholder="Type any text..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"></textarea></div>',
+  phone: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Phone Number</label><input type="tel" id="f-phone" placeholder="+255 7XX XXX XXX" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div>',
+  email: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Email Address</label><input type="email" id="f-email" placeholder="name@example.com" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Subject</label><input type="text" id="f-email-subject" placeholder="Email subject" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Message</label><textarea id="f-email-body" rows="3" placeholder="Email body..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"></textarea></div>',
+  sms: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Phone Number</label><input type="tel" id="f-sms-phone" placeholder="+255..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Message</label><textarea id="f-sms-msg" rows="3" placeholder="Your message..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"></textarea></div>',
+  whatsapp: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Phone Number (with country code)</label><input type="tel" id="f-wa-phone" placeholder="255712345678" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Pre-filled Message</label><textarea id="f-wa-msg" rows="3" placeholder="Hello!" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"></textarea></div>',
+  telegram: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Telegram Username or Phone</label><input type="text" id="f-tg-user" placeholder="@username or +255..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Pre-filled Message</label><textarea id="f-tg-msg" rows="3" placeholder="Your message..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"></textarea></div>',
+  wifi: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Network Name (SSID)</label><input type="text" id="f-wifi-ssid" placeholder="MyWiFi" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Password</label><input type="text" id="f-wifi-pass" placeholder="Password" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Encryption</label><select id="f-wifi-enc" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">None (Open)</option></select></div>',
+  vcard: '<div class="grid grid-cols-2 gap-2"><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">First Name</label><input type="text" id="f-vc-fn" placeholder="John" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Last Name</label><input type="text" id="f-vc-ln" placeholder="Doe" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Phone</label><input type="tel" id="f-vc-phone" placeholder="+255..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Email</label><input type="email" id="f-vc-email" placeholder="john@example.com" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Company</label><input type="text" id="f-vc-company" placeholder="Rex International" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Job Title</label><input type="text" id="f-vc-title" placeholder="CEO" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div>',
+  location: '<div class="grid grid-cols-2 gap-2"><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Latitude</label><input type="number" step="any" id="f-loc-lat" placeholder="-6.7924" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Longitude</label><input type="number" step="any" id="f-loc-lng" placeholder="39.2083" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div></div><button onclick="useCurrentLocation()" class="w-full py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-lg text-xs font-semibold"><i class="fa-solid fa-location-crosshairs mr-1"></i> Use My Current Location</button>',
+  event: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Event Title</label><input type="text" id="f-ev-title" placeholder="Birthday Party" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Description</label><textarea id="f-ev-desc" rows="2" placeholder="Event description..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"></textarea></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Location</label><input type="text" id="f-ev-location" placeholder="Venue name" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div class="grid grid-cols-2 gap-2"><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Start</label><input type="datetime-local" id="f-ev-start" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">End</label><input type="datetime-local" id="f-ev-end" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div></div>',
+  payment: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Payment Type</label><select id="f-pay-type" onchange="handlePaymentType(this.value)" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm"><option value="mpesa">M-Pesa (Lipa Namba)</option><option value="tigo">Tigo Pesa</option><option value="airtel">Airtel Money</option><option value="bank">Bank Transfer</option><option value="paypal">PayPal</option><option value="stripe">Stripe</option></select></div><div id="pay-mobile-fields"><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Till/Merchant Number</label><input type="text" id="f-pay-number" placeholder="123456" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Amount</label><input type="number" id="f-pay-amount" placeholder="10000" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Reference / Name</label><input type="text" id="f-pay-ref" placeholder="John Doe" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div></div><div id="pay-bank-fields" class="hidden"><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Bank Name</label><input type="text" id="f-pay-bank" placeholder="CRDB Bank" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Account Name</label><input type="text" id="f-pay-bank-name" placeholder="Rex International Ltd" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Account Number / IBAN</label><input type="text" id="f-pay-bank-acc" placeholder="0123456789" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div></div><div id="pay-link-fields" class="hidden"><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Payment Link URL</label><input type="url" id="f-pay-link" placeholder="https://paypal.me/..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div></div>',
+  app: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">App Name</label><input type="text" id="f-app-name" placeholder="My Awesome App" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">iOS App Store URL</label><input type="url" id="f-app-ios" placeholder="https://apps.apple.com/app/..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Android Play Store URL</label><input type="url" id="f-app-android" placeholder="https://play.google.com/store/apps/..." class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div>',
+  menu: '<div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Business/Restaurant Name</label><input type="text" id="f-menu-title" placeholder="Rex Restaurant" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm" /></div><div><label class="block text-xs font-semibold mb-1.5 dark:text-gray-200">Menu Items (One per line: Name | Price | Description)</label><textarea id="f-menu-items" rows="6" placeholder="Burger | 5000 | Juicy beef burger&#10;Pizza | 8000 | Large cheese pizza" class="w-full p-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 dark:text-white text-sm font-mono"></textarea></div>'
 };
 
 let analyticsChart = null;
@@ -444,545 +468,628 @@ let deferredPrompt = null;
 let cameraStream = null;
 let cameraAnimationId = null;
 
-function init() {
-const rawHash = window.location.hash;
-const hash = rawHash.startsWith('#') ? rawHash.substring(1) : rawHash;
-
-if (hash.startsWith('protected=')) {
-try {
-const encryptedData = decodeURIComponent(hash.substring('protected='.length));
-showProtectedViewer(encryptedData);
-} catch (e) { alert("Error: Link corrupted"); }
-} else if (hash.startsWith('menu=')) {
-try {
-const compressedData = decodeURIComponent(hash.substring('menu='.length));
-showMenuViewer(compressedData);
-} catch (e) { alert("Error: Link corrupted"); }
-} else {
-document.getElementById('main-app').classList.remove('hidden');
-renderTabs();
-renderForm();
-setupEventListeners();
-loadHistory();
-updateDashboard();
-initTheme();
-initPWA();
+// ============ INIT ============
+function initApp() {
+  console.log('✅ App initializing...');
+  const rawHash = window.location.hash;
+  const hash = rawHash.startsWith('#') ? rawHash.substring(1) : rawHash;
+  
+  if (hash.startsWith('protected=')) {
+    try {
+      const encryptedData = decodeURIComponent(hash.substring('protected='.length));
+      showProtectedViewer(encryptedData);
+    } catch (e) { alert("Error: Link corrupted"); }
+  } else if (hash.startsWith('menu=')) {
+    try {
+      const compressedData = decodeURIComponent(hash.substring('menu='.length));
+      showMenuViewer(compressedData);
+    } catch (e) { alert("Error: Link corrupted"); }
+  } else {
+    document.getElementById('main-app').classList.remove('hidden');
+    loadHistory();
+    updateDashboard();
+    initTheme();
+    initPWA();
+    console.log('✅ App ready');
+  }
 }
+
+// ============ TABS ============
+function switchTab(type) {
+  state.currentType = type;
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('tab-active');
+    btn.classList.add('bg-white', 'dark:bg-slate-800', 'text-gray-700', 'dark:text-gray-200', 'border', 'border-gray-200', 'dark:border-slate-700');
+  });
+  const activeBtn = document.getElementById('tab-' + type);
+  if (activeBtn) {
+    activeBtn.classList.add('tab-active');
+    activeBtn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-gray-700', 'dark:text-gray-200', 'border', 'border-gray-200', 'dark:border-slate-700');
+  }
+  const container = document.getElementById('dynamic-form');
+  if (container && formTemplates[type]) {
+    container.innerHTML = formTemplates[type];
+  }
 }
 
+// ============ VIEWERS ============
 function showProtectedViewer(encryptedData) {
-document.getElementById('main-app').classList.add('hidden');
-document.getElementById('protected-viewer').classList.remove('hidden');
-document.getElementById('unlock-btn').onclick = () => {
-const password = document.getElementById('protected-password').value;
-if (!password) { showToast('⚠️ Enter password', 'error'); return; }
-try {
-const bytes = CryptoJS.AES.decrypt(encryptedData, password);
-const decrypted = bytes.toString(CryptoJS.enc.Utf8);
-if (!decrypted) throw new Error('Wrong password');
-document.getElementById('protected-text').textContent = decrypted;
-document.getElementById('protected-content-display').classList.remove('hidden');
-const actionArea = document.getElementById('protected-action-area');
-actionArea.innerHTML = '';
-if (decrypted.startsWith('http')) {
-actionArea.innerHTML = <a href="${decrypted}" target="_blank" class="block w-full py-3 btn-primary text-white font-bold rounded-xl text-center"><i class="fa-solid fa-external-link-alt mr-2"></i> Visit Link</a>; } else if (decrypted.startsWith('tel:')) { actionArea.innerHTML =<a href="${decrypted}" class="block w-full py-3 bg-green-500 text-white font-bold rounded-xl text-center"&gt;&lt;i class="fa-solid fa-phone mr-2"&gt;&lt;/i&gt; Call Now&lt;/a>;
+  document.getElementById('main-app').classList.add('hidden');
+  document.getElementById('protected-viewer').classList.remove('hidden');
+  window._encryptedData = encryptedData;
 }
-showToast('✅ Unlocked successfully!', 'success');
-} catch (e) { showToast('❌ Wrong password!', 'error'); }
-};
-document.getElementById('back-to-home-protected').onclick = () => { window.location.hash = ''; window.location.reload(); };
+
+function unlockProtected() {
+  const password = document.getElementById('protected-password').value;
+  if (!password) { showToast('⚠️ Enter password', 'error'); return; }
+  try {
+    const bytes = CryptoJS.AES.decrypt(window._encryptedData, password);
+    const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+    if (!decrypted) throw new Error('Wrong password');
+    document.getElementById('protected-text').textContent = decrypted;
+    document.getElementById('protected-content-display').classList.remove('hidden');
+    const actionArea = document.getElementById('protected-action-area');
+    actionArea.innerHTML = '';
+    if (decrypted.startsWith('http')) {
+      actionArea.innerHTML = '<a href="' + decrypted + '" target="_blank" class="block w-full py-3 btn-primary text-white font-bold rounded-xl text-center"><i class="fa-solid fa-external-link-alt mr-2"></i> Visit Link</a>';
+    } else if (decrypted.startsWith('tel:')) {
+      actionArea.innerHTML = '<a href="' + decrypted + '" class="block w-full py-3 bg-green-500 text-white font-bold rounded-xl text-center"><i class="fa-solid fa-phone mr-2"></i> Call Now</a>';
+    }
+    showToast('✅ Unlocked successfully!', 'success');
+  } catch (e) { showToast('❌ Wrong password!', 'error'); }
 }
 
 function showMenuViewer(compressedData) {
-document.getElementById('main-app').classList.add('hidden');
-document.getElementById('menu-viewer').classList.remove('hidden');
-try {
-const binaryString = atob(compressedData);
-const bytes = new Uint8Array(binaryString.length);
-for (let i = 0; i < binaryString.length; i++) bytes[i] = binaryString.charCodeAt(i);
-const jsonStr = pako.inflate(bytes, { to: 'string' });
-const menuData = JSON.parse(jsonStr);
-document.getElementById('menu-title').textContent = menuData.title || 'Our Menu';
-document.getElementById('menu-subtitle').textContent = menuData.subtitle || 'Welcome!';
-document.getElementById('menu-hero').style.background = menuData.cover ? url('${menuData.cover}') center/cover: 'linear-gradient(135deg, #6366f1, #8b5cf6)'; const list = document.getElementById('menu-items-list'); list.innerHTML = ''; if (menuData.items && menuData.items.length &gt; 0) { menuData.items.forEach(item =&gt; { list.innerHTML +=<div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-slate-700 flex justify-between items-start"><div class="flex-1"><h3 class="font-bold text-base dark:text-white">${item.name}&lt;/h3&gt;${item.desc ? <p class="text-xs text-gray-500 mt-1"&gt;${item.desc}</p>: ''}&lt;/div&gt;&lt;div class="ml-4 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-bold whitespace-nowrap"&gt;${item.price}</div></div>`;
-});
-} else { list.innerHTML = '<p class="text-center text-gray-400 py-8">No items available.</p>'; }
-} catch (e) { document.getElementById('menu-items-list').innerHTML = '<p class="text-center text-red-500 py-8">Error loading menu.</p>'; }
-document.getElementById('menu-back-btn').onclick = () => { window.location.hash = ''; window.location.reload(); };
+  document.getElementById('main-app').classList.add('hidden');
+  document.getElementById('menu-viewer').classList.remove('hidden');
+  try {
+    const binaryString = atob(compressedData);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) bytes[i] = binaryString.charCodeAt(i);
+    const jsonStr = pako.inflate(bytes, { to: 'string' });
+    const menuData = JSON.parse(jsonStr);
+    document.getElementById('menu-title').textContent = menuData.title || 'Our Menu';
+    document.getElementById('menu-subtitle').textContent = menuData.subtitle || 'Welcome!';
+    document.getElementById('menu-hero').style.background = menuData.cover ? 'url(' + menuData.cover + ') center/cover' : 'linear-gradient(135deg, #6366f1, #8b5cf6)';
+    const list = document.getElementById('menu-items-list');
+    list.innerHTML = '';
+    if (menuData.items && menuData.items.length > 0) {
+      menuData.items.forEach(item => {
+        list.innerHTML += '<div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-slate-700 flex justify-between items-start"><div class="flex-1"><h3 class="font-bold text-base dark:text-white">' + item.name + '</h3>' + (item.desc ? '<p class="text-xs text-gray-500 mt-1">' + item.desc + '</p>' : '') + '</div><div class="ml-4 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-bold whitespace-nowrap">' + item.price + '</div></div>';
+      });
+    } else { list.innerHTML = '<p class="text-center text-gray-400 py-8">No items available.</p>'; }
+  } catch (e) { document.getElementById('menu-items-list').innerHTML = '<p class="text-center text-red-500 py-8">Error loading menu.</p>'; }
 }
 
+function goBackHome() { window.location.hash = ''; window.location.reload(); }
+
+// ============ SCAN RESULT ============
 function showScanResult(decodedText) {
-document.getElementById('scanner-modal').classList.add('hidden');
-document.getElementById('scan-result-page').classList.remove('hidden');
-
-const contentDiv = document.getElementById('result-content');
-const iconEl = document.getElementById('result-icon');
-const titleEl = document.getElementById('result-title');
-contentDiv.innerHTML = '';
-
-if (decodedText.startsWith('http://') || decodedText.startsWith('https://')) {
-iconEl.className = 'fa-solid fa-link text-white text-3xl';
-titleEl.textContent = 'Website Link';
-contentDiv.innerHTML = <p class="text-sm text-gray-500 mb-3 break-all"&gt;${decodedText}</p><a href="{decodedText}')" class="block w-full mt-3 py-3 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white font-semibold rounded-xl"><i class="fa-solid fa-copy mr-2"></i> Copy Link</button>; } else if (decodedText.startsWith('tel:')) { iconEl.className = 'fa-solid fa-phone text-white text-3xl'; titleEl.textContent = 'Phone Number'; const number = decodedText.replace('tel:', ''); contentDiv.innerHTML =<p class="text-2xl font-bold text-center mb-4 dark:text-white">{decodedText}" class="block w-full py-4 bg-green-500 text-white font-bold rounded-xl text-center shadow-lg"><i class="fa-solid fa-phone mr-2"></i> Call Now</a>; } else if (decodedText.startsWith('mailto:')) { iconEl.className = 'fa-solid fa-envelope text-white text-3xl'; titleEl.textContent = 'Email'; contentDiv.innerHTML =<p class="text-sm text-gray-500 mb-3 break-all">{decodedText}" class="block w-full py-4 bg-blue-500 text-white font-bold rounded-xl text-center shadow-lg"><i class="fa-solid fa-envelope mr-2"></i> Send Email</a>; } else if (decodedText.startsWith('WIFI:')) { iconEl.className = 'fa-solid fa-wifi text-white text-3xl'; titleEl.textContent = 'WiFi Network'; const ssid = decodedText.match(/S:([^;]+)/)?.[1] || ''; const pass = decodedText.match(/P:([^;]+)/)?.[1] || ''; const enc = decodedText.match(/T:([^;]+)/)?.[1] || 'WPA'; contentDiv.innerHTML =<div class="text-center mb-4"><i class="fa-solid fa-wifi text-4xl text-primary mb-2"></i><h3 class="text-xl font-bold dark:text-white">{enc} Network</p></div><div class="bg-gray-50 dark:bg-slate-900 p-4 rounded-lg mb-4"><p class="text-xs text-gray-500 mb-1">Password:</p><p class="font-mono font-bold text-lg dark:text-white">{pass}')" class="block w-full py-3 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white font-semibold rounded-xl"><i class="fa-solid fa-copy mr-2"></i> Copy Password</button>; } else if (decodedText.includes('BEGIN:VCARD')) { iconEl.className = 'fa-solid fa-address-card text-white text-3xl'; titleEl.textContent = 'Contact Card'; const fn = decodedText.match(/FN:(.+)/)?.[1] || ''; const tel = decodedText.match(/TEL[^:]*:(.+)/)?.[1] || ''; const email = decodedText.match(/EMAIL[^:]*:(.+)/)?.[1] || ''; const org = decodedText.match(/ORG:(.+)/)?.[1] || ''; contentDiv.innerHTML =<div class="text-center mb-4"><div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-2 text-white text-2xl font-bold">{fn}</h3>latex
-{org ? `<p class="text-sm text-gray-500"&gt;
-
-{org}</p>: ''}&lt;/div&gt;&lt;div class="space-y-2"&gt;${tel ? <a href="tel:${tel}" class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-slate-900 rounded-lg"><i class="fa-solid fa-phone text-primary"></i><span class="dark:text-white">latex
-{tel}&lt;/span&gt;&lt;/a>` : ''}
-
-{email ? <a href="mailto:${email}" class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-slate-900 rounded-lg"><i class="fa-solid fa-envelope text-primary"></i><span class="dark:text-white">${email}&lt;/span&gt;&lt;/a> : ''}</div>; } else if (decodedText.includes('BEGIN:VEVENT')) { iconEl.className = 'fa-solid fa-calendar text-white text-3xl'; titleEl.textContent = 'Calendar Event'; const summary = decodedText.match(/SUMMARY:(.+)/)?.[1] || ''; const location = decodedText.match(/LOCATION:(.+)/)?.[1] || ''; contentDiv.innerHTML =<div class="text-center mb-4"><i class="fa-solid fa-calendar text-4xl text-primary mb-2"></i><h3 class="text-xl font-bold dark:text-white">{location ? <p class="text-sm text-gray-500"&gt;&lt;i class="fa-solid fa-location-dot mr-1"&gt;&lt;/i&gt;${location}</p>: ''}&lt;/div&gt;&lt;p class="text-sm text-gray-500 text-center"&gt;Add this event to your calendar&lt;/p>;
-} else if (decodedText.startsWith('sms:')) {
-iconEl.className = 'fa-solid fa-comment-sms text-white text-3xl';
-titleEl.textContent = 'SMS Message';
-contentDiv.innerHTML = <p class="text-sm text-gray-500 mb-3 break-all"&gt;${decodedText}</p><a href="latex
-{decodedText}" class="block w-full py-4 bg-blue-500 text-white font-bold rounded-xl text-center shadow-lg"&gt;&lt;i class="fa-solid fa-comment-sms mr-2"&gt;&lt;/i&gt; Send SMS&lt;/a>`; } else if (decodedText.includes('wa.me')) { iconEl.className = 'fa-brands fa-whatsapp text-white text-3xl'; titleEl.textContent = 'WhatsApp'; contentDiv.innerHTML = `<p class="text-sm text-gray-500 mb-3 break-all"&gt;
-
-{decodedText}</p><a href="latex
-{decodedText}" target="_blank" class="block w-full py-4 bg-green-500 text-white font-bold rounded-xl text-center shadow-lg"&gt;&lt;i class="fa-brands fa-whatsapp mr-2"&gt;&lt;/i&gt; Open WhatsApp&lt;/a>`; } else { iconEl.className = 'fa-solid fa-font text-white text-3xl'; titleEl.textContent = 'Text Content'; const safeText = decodedText.replace(/'/g, "\\'").replace(/&lt;/g, '&lt;'); contentDiv.innerHTML = `<p class="text-base dark:text-white whitespace-pre-wrap break-all"&gt;
-
-{safeText}</p><button onclick="copyToClipboard('${safeText}')" class="block w-full mt-4 py-3 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white font-semibold rounded-xl"&gt;&lt;i class="fa-solid fa-copy mr-2"&gt;&lt;/i&gt; Copy Text&lt;/button>;
-}
+  document.getElementById('scanner-modal').classList.add('hidden');
+  document.getElementById('scan-result-page').classList.remove('hidden');
+  
+  const contentDiv = document.getElementById('result-content');
+  const iconEl = document.getElementById('result-icon');
+  const titleEl = document.getElementById('result-title');
+  contentDiv.innerHTML = '';
+  
+  if (decodedText.startsWith('http://') || decodedText.startsWith('https://')) {
+    iconEl.className = 'fa-solid fa-link text-white text-3xl';
+    titleEl.textContent = 'Website Link';
+    contentDiv.innerHTML = '<p class="text-sm text-gray-500 mb-3 break-all">' + decodedText + '</p><a href="' + decodedText + '" target="_blank" class="block w-full py-4 gradient-bg text-white font-bold rounded-xl text-center shadow-lg"><i class="fa-solid fa-external-link-alt mr-2"></i> Open Website</a><button onclick="copyToClipboard(\'' + decodedText.replace(/'/g, "\\'") + '\')" class="block w-full mt-3 py-3 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white font-semibold rounded-xl"><i class="fa-solid fa-copy mr-2"></i> Copy Link</button>';
+  } else if (decodedText.startsWith('tel:')) {
+    iconEl.className = 'fa-solid fa-phone text-white text-3xl';
+    titleEl.textContent = 'Phone Number';
+    const number = decodedText.replace('tel:', '');
+    contentDiv.innerHTML = '<p class="text-2xl font-bold text-center mb-4 dark:text-white">' + number + '</p><a href="' + decodedText + '" class="block w-full py-4 bg-green-500 text-white font-bold rounded-xl text-center shadow-lg"><i class="fa-solid fa-phone mr-2"></i> Call Now</a>';
+  } else if (decodedText.startsWith('mailto:')) {
+    iconEl.className = 'fa-solid fa-envelope text-white text-3xl';
+    titleEl.textContent = 'Email';
+    contentDiv.innerHTML = '<p class="text-sm text-gray-500 mb-3 break-all">' + decodedText + '</p><a href="' + decodedText + '" class="block w-full py-4 bg-blue-500 text-white font-bold rounded-xl text-center shadow-lg"><i class="fa-solid fa-envelope mr-2"></i> Send Email</a>';
+  } else if (decodedText.startsWith('WIFI:')) {
+    iconEl.className = 'fa-solid fa-wifi text-white text-3xl';
+    titleEl.textContent = 'WiFi Network';
+    const ssid = (decodedText.match(/S:([^;]+)/) || [])[1] || '';
+    const pass = (decodedText.match(/P:([^;]+)/) || [])[1] || '';
+    const enc = (decodedText.match(/T:([^;]+)/) || [])[1] || 'WPA';
+    contentDiv.innerHTML = '<div class="text-center mb-4"><i class="fa-solid fa-wifi text-4xl text-primary mb-2"></i><h3 class="text-xl font-bold dark:text-white">' + ssid + '</h3><p class="text-sm text-gray-500">' + enc + ' Network</p></div><div class="bg-gray-50 dark:bg-slate-900 p-4 rounded-lg mb-4"><p class="text-xs text-gray-500 mb-1">Password:</p><p class="font-mono font-bold text-lg dark:text-white">' + (pass || 'None (Open)') + '</p></div><button onclick="copyToClipboard(\'' + pass.replace(/'/g, "\\'") + '\')" class="block w-full py-3 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white font-semibold rounded-xl"><i class="fa-solid fa-copy mr-2"></i> Copy Password</button>';
+  } else if (decodedText.includes('BEGIN:VCARD')) {
+    iconEl.className = 'fa-solid fa-address-card text-white text-3xl';
+    titleEl.textContent = 'Contact Card';
+    const fn = (decodedText.match(/FN:(.+)/) || [])[1] || '';
+    const tel = (decodedText.match(/TEL[^:]*:(.+)/) || [])[1] || '';
+    const email = (decodedText.match(/EMAIL[^:]*:(.+)/) || [])[1] || '';
+    const org = (decodedText.match(/ORG:(.+)/) || [])[1] || '';
+    contentDiv.innerHTML = '<div class="text-center mb-4"><div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-2 text-white text-2xl font-bold">' + fn.charAt(0).toUpperCase() + '</div><h3 class="text-xl font-bold dark:text-white">' + fn + '</h3>' + (org ? '<p class="text-sm text-gray-500">' + org + '</p>' : '') + '</div><div class="space-y-2">' + (tel ? '<a href="tel:' + tel + '" class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-slate-900 rounded-lg"><i class="fa-solid fa-phone text-primary"></i><span class="dark:text-white">' + tel + '</span></a>' : '') + (email ? '<a href="mailto:' + email + '" class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-slate-900 rounded-lg"><i class="fa-solid fa-envelope text-primary"></i><span class="dark:text-white">' + email + '</span></a>' : '') + '</div>';
+  } else if (decodedText.includes('BEGIN:VEVENT')) {
+    iconEl.className = 'fa-solid fa-calendar text-white text-3xl';
+    titleEl.textContent = 'Calendar Event';
+    const summary = (decodedText.match(/SUMMARY:(.+)/) || [])[1] || '';
+    const location = (decodedText.match(/LOCATION:(.+)/) || [])[1] || '';
+    contentDiv.innerHTML = '<div class="text-center mb-4"><i class="fa-solid fa-calendar text-4xl text-primary mb-2"></i><h3 class="text-xl font-bold dark:text-white">' + summary + '</h3>' + (location ? '<p class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i>' + location + '</p>' : '') + '</div><p class="text-sm text-gray-500 text-center">Add this event to your calendar</p>';
+  } else if (decodedText.startsWith('sms:')) {
+    iconEl.className = 'fa-solid fa-comment-sms text-white text-3xl';
+    titleEl.textContent = 'SMS Message';
+    contentDiv.innerHTML = '<p class="text-sm text-gray-500 mb-3 break-all">' + decodedText + '</p><a href="' + decodedText + '" class="block w-full py-4 bg-blue-500 text-white font-bold rounded-xl text-center shadow-lg"><i class="fa-solid fa-comment-sms mr-2"></i> Send SMS</a>';
+  } else if (decodedText.includes('wa.me')) {
+    iconEl.className = 'fa-brands fa-whatsapp text-white text-3xl';
+    titleEl.textContent = 'WhatsApp';
+    contentDiv.innerHTML = '<p class="text-sm text-gray-500 mb-3 break-all">' + decodedText + '</p><a href="' + decodedText + '" target="_blank" class="block w-full py-4 bg-green-500 text-white font-bold rounded-xl text-center shadow-lg"><i class="fa-brands fa-whatsapp mr-2"></i> Open WhatsApp</a>';
+  } else {
+    iconEl.className = 'fa-solid fa-font text-white text-3xl';
+    titleEl.textContent = 'Text Content';
+    const safeText = decodedText.replace(/'/g, "\\'").replace(/</g, '&lt;');
+    contentDiv.innerHTML = '<p class="text-base dark:text-white whitespace-pre-wrap break-all">' + safeText + '</p><button onclick="copyToClipboard(\'' + safeText + '\')" class="block w-full mt-4 py-3 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white font-semibold rounded-xl"><i class="fa-solid fa-copy mr-2"></i> Copy Text</button>';
+  }
 }
 
 function copyToClipboard(text) {
-navigator.clipboard.writeText(text).then(() => {
-showToast('📋 Copied to clipboard!', 'success');
-}).catch(() => {
-showToast(' Copy failed', 'error');
-});
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('📋 Copied to clipboard!', 'success');
+  }).catch(() => {
+    showToast('❌ Copy failed', 'error');
+  });
 }
 
-function renderTabs() {
-const container = document.getElementById('type-tabs');
-container.innerHTML = qrTypes.map(t => <button class="type-tab flex-shrink-0 px-3 py-2 rounded-xl font-semibold text-xs transition-all flex items-center gap-1.5${t.id === state.currentType ? 'tab-active' : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700'}" data-type="{t.icon} text-xs"></i><span>${t.label}&lt;/span&gt;&lt;/button>).join('');
-container.querySelectorAll('.type-tab').forEach(btn => btn.addEventListener('click', () => { state.currentType = btn.dataset.type; renderTabs(); renderForm(); }));
+function scanAgain() {
+  document.getElementById('scan-result-page').classList.add('hidden');
+  openScanner();
 }
 
-function renderForm() {
-const container = document.getElementById('dynamic-form');
-container.innerHTML = formTemplates[state.currentType] || '';
-container.classList.remove('animate-fade-in'); void container.offsetWidth; container.classList.add('animate-fade-in');
-const payType = document.getElementById('f-pay-type');
-if (payType) payType.addEventListener('change', (e) => { const v = e.target.value; document.getElementById('pay-mobile-fields').classList.toggle('hidden', !['mpesa','tigo','airtel'].includes(v)); document.getElementById('pay-bank-fields').classList.toggle('hidden', v !== 'bank'); document.getElementById('pay-link-fields').classList.toggle('hidden', !['paypal','stripe'].includes(v)); });
-const locBtn = document.getElementById('use-current-loc');
-if (locBtn) locBtn.addEventListener('click', () => { if (navigator.geolocation) navigator.geolocation.getCurrentPosition((pos) => { document.getElementById('f-loc-lat').value = pos.coords.latitude.toFixed(6); document.getElementById('f-loc-lng').value = pos.coords.longitude.toFixed(6); showToast('📍 Location captured!', 'success'); }, () => showToast('❌ Location access denied', 'error')); });
+// ============ CUSTOMIZE ============
+function setFgColor(color, el) {
+  state.fgColor = color;
+  document.querySelectorAll('#fg-colors .color-swatch').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
 }
 
-function setupEventListeners() {
-document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-document.getElementById('generate-btn').addEventListener('click', generateQR);
-
-document.getElementById('protect-toggle').addEventListener('change', (e) => {
-state.isProtected = e.target.checked;
-document.getElementById('password-input-wrapper').classList.toggle('hidden', !state.isProtected);
-if(state.isProtected) {
-document.querySelectorAll('.ec-btn').forEach(b => b.classList.remove('border-primary', 'bg-primary/10'));
-document.querySelector('.ec-btn[data-ec="H"]').classList.add('border-primary', 'bg-primary/10');
-state.errorCorrection = 'H';
+function setBgColor(color, el) {
+  state.bgColor = color;
+  state.bgTransparent = false;
+  document.querySelectorAll('#bg-colors .color-swatch').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('bg-transparent-btn').classList.remove('bg-primary', 'text-white');
 }
-});
 
-document.querySelectorAll('#fg-colors .color-swatch').forEach(swatch => swatch.addEventListener('click', () => { document.querySelectorAll('#fg-colors .color-swatch').forEach(s => s.classList.remove('selected')); swatch.classList.add('selected'); state.fgColor = swatch.dataset.color; }));
-document.querySelectorAll('#bg-colors .color-swatch').forEach(swatch => swatch.addEventListener('click', () => { document.querySelectorAll('#bg-colors .color-swatch').forEach(s => s.classList.remove('selected')); swatch.classList.add('selected'); state.bgColor = swatch.dataset.color; state.bgTransparent = false; document.getElementById('bg-transparent-btn').classList.remove('bg-primary', 'text-white'); }));
-document.getElementById('bg-transparent-btn').addEventListener('click', () => { state.bgTransparent = !state.bgTransparent; document.querySelectorAll('#bg-colors .color-swatch').forEach(s => s.classList.remove('selected')); document.getElementById('bg-transparent-btn').classList.toggle('bg-primary'); document.getElementById('bg-transparent-btn').classList.toggle('text-white'); showToast(state.bgTransparent ? 'Background: Transparent' : 'Background: Light Gray', 'info'); });
-document.querySelectorAll('.dot-style-btn').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.dot-style-btn').forEach(b => { b.classList.remove('border-primary', 'bg-primary/10'); b.classList.add('border-gray-200', 'dark:border-slate-700'); }); btn.classList.add('border-primary', 'bg-primary/10'); btn.classList.remove('border-gray-200', 'dark:border-slate-700'); state.dotStyle = btn.dataset.style; }));
-document.querySelectorAll('.corner-btn').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.corner-btn').forEach(b => { b.classList.remove('border-primary', 'bg-primary/10'); b.classList.add('border-gray-200', 'dark:border-slate-700'); }); btn.classList.add('border-primary', 'bg-primary/10'); btn.classList.remove('border-gray-200', 'dark:border-slate-700'); state.cornerStyle = btn.dataset.style; }));
-document.querySelectorAll('.ec-btn').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.ec-btn').forEach(b => { b.classList.remove('border-primary', 'bg-primary/10'); b.classList.add('border-gray-200', 'dark:border-slate-700'); }); btn.classList.add('border-primary', 'bg-primary/10'); btn.classList.remove('border-gray-200', 'dark:border-slate-700'); state.errorCorrection = btn.dataset.ec; }));
-document.getElementById('qr-size').addEventListener('input', (e) => document.getElementById('size-val').textContent = e.target.value);
-
-document.getElementById('logo-input').addEventListener('change', (e) => {
-const file = e.target.files[0];
-if (file) {
-const reader = new FileReader();
-reader.onload = (event) => {
-state.logoBase64 = event.target.result;
-const previewImg = document.getElementById('logo-preview');
-previewImg.src = state.logoBase64;
-previewImg.onload = () => {
-document.getElementById('logo-preview-container').classList.remove('hidden');
-showToast('✅ Logo loaded! It will appear on QR', 'success');
-};
-document.querySelectorAll('.ec-btn').forEach(b => b.classList.remove('border-primary', 'bg-primary/10'));
-document.querySelector('.ec-btn[data-ec="H"]').classList.add('border-primary', 'bg-primary/10');
-state.errorCorrection = 'H';
-};
-reader.readAsDataURL(file);
+function toggleBgTransparent() {
+  state.bgTransparent = !state.bgTransparent;
+  document.querySelectorAll('#bg-colors .color-swatch').forEach(s => s.classList.remove('selected'));
+  const btn = document.getElementById('bg-transparent-btn');
+  btn.classList.toggle('bg-primary');
+  btn.classList.toggle('text-white');
+  showToast(state.bgTransparent ? 'Background: Transparent' : 'Background: Light Gray', 'info');
 }
-});
-document.getElementById('remove-logo').addEventListener('click', () => { state.logoBase64 = null; document.getElementById('logo-input').value = ''; document.getElementById('logo-preview-container').classList.add('hidden'); });
 
-document.getElementById('download-png').addEventListener('click', () => downloadQR('png'));
-document.getElementById('download-svg').addEventListener('click', () => downloadQR('svg'));
-document.getElementById('copy-qr').addEventListener('click', copyQR);
-document.getElementById('share-qr').addEventListener('click', shareNative);
-document.querySelectorAll('.share-social').forEach(btn => btn.addEventListener('click', () => socialShare(btn.dataset.platform)));
+function setDotStyle(style, el) {
+  state.dotStyle = style;
+  document.querySelectorAll('.dot-style-btn').forEach(b => { b.classList.remove('border-primary', 'bg-primary/10'); b.classList.add('border-gray-200', 'dark:border-slate-700'); });
+  el.classList.add('border-primary', 'bg-primary/10');
+  el.classList.remove('border-gray-200', 'dark:border-slate-700');
+}
 
-document.getElementById('scanner-btn').addEventListener('click', openScanner);
-document.getElementById('close-scanner').addEventListener('click', closeScanner);
-document.getElementById('gallery-input').addEventListener('change', handleGalleryUpload);
-document.getElementById('scan-again-btn').addEventListener('click', () => {
-document.getElementById('scan-result-page').classList.add('hidden');
-openScanner();
-});
+function setCornerStyle(style, el) {
+  state.cornerStyle = style;
+  document.querySelectorAll('.corner-btn').forEach(b => { b.classList.remove('border-primary', 'bg-primary/10'); b.classList.add('border-gray-200', 'dark:border-slate-700'); });
+  el.classList.add('border-primary', 'bg-primary/10');
+  el.classList.remove('border-gray-200', 'dark:border-slate-700');
+}
 
-document.getElementById('bulk-generate-btn').addEventListener('click', bulkGenerate);
-document.getElementById('bulk-csv').addEventListener('change', (e) => { const file = e.target.files[0]; if (file) { const reader = new FileReader(); reader.onload = (ev) => { document.getElementById('bulk-input').value = ev.target.result; showToast('📄 File loaded', 'success'); }; reader.readAsText(file); } });
-document.getElementById('clear-history').addEventListener('click', () => { if (confirm('Clear all history?')) { localStorage.removeItem('rex-qr-history'); loadHistory(); updateDashboard(); showToast('🗑️ History cleared', 'success'); } });
+function setEC(ec, el) {
+  state.errorCorrection = ec;
+  document.querySelectorAll('.ec-btn').forEach(b => { b.classList.remove('border-primary', 'bg-primary/10'); b.classList.add('border-gray-200', 'dark:border-slate-700'); });
+  el.classList.add('border-primary', 'bg-primary/10');
+  el.classList.remove('border-gray-200', 'dark:border-slate-700');
+}
+
+function toggleProtect() {
+  state.isProtected = document.getElementById('protect-toggle').checked;
+  document.getElementById('password-input-wrapper').classList.toggle('hidden', !state.isProtected);
+  if (state.isProtected) {
+    document.querySelectorAll('.ec-btn').forEach(b => b.classList.remove('border-primary', 'bg-primary/10'));
+    document.querySelector('.ec-btn[data-ec="H"]').classList.add('border-primary', 'bg-primary/10');
+    state.errorCorrection = 'H';
+  }
+}
+
+function handleLogoUpload(input) {
+  const file = input.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      state.logoBase64 = event.target.result;
+      const previewImg = document.getElementById('logo-preview');
+      previewImg.src = state.logoBase64;
+      previewImg.onload = function() {
+        document.getElementById('logo-preview-container').classList.remove('hidden');
+        showToast('✅ Logo loaded! It will appear on QR', 'success');
+      };
+      document.querySelectorAll('.ec-btn').forEach(b => b.classList.remove('border-primary', 'bg-primary/10'));
+      document.querySelector('.ec-btn[data-ec="H"]').classList.add('border-primary', 'bg-primary/10');
+      state.errorCorrection = 'H';
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function removeLogo() {
+  state.logoBase64 = null;
+  document.getElementById('logo-input').value = '';
+  document.getElementById('logo-preview-container').classList.add('hidden');
+}
+
+function useCurrentLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      document.getElementById('f-loc-lat').value = pos.coords.latitude.toFixed(6);
+      document.getElementById('f-loc-lng').value = pos.coords.longitude.toFixed(6);
+      showToast(' Location captured!', 'success');
+    }, function() { showToast('❌ Location access denied', 'error'); });
+  }
+}
+
+function handlePaymentType(value) {
+  document.getElementById('pay-mobile-fields').classList.toggle('hidden', !['mpesa','tigo','airtel'].includes(value));
+  document.getElementById('pay-bank-fields').classList.toggle('hidden', value !== 'bank');
+  document.getElementById('pay-link-fields').classList.toggle('hidden', !['paypal','stripe'].includes(value));
+}
+
+// ============ GENERATE QR ============
+function generateQR() {
+  const data = buildQrData();
+  if (!data) return;
+  state.currentData = data;
+  const size = parseInt(document.getElementById('qr-size').value);
+  const fgColor = state.fgColor;
+  const bgColor = state.bgTransparent ? 'transparent' : state.bgColor;
+  const ctaText = document.getElementById('cta-text')?.value.trim() || '';
+  const container = document.getElementById('qr-container');
+  container.innerHTML = '';
+  
+  let imageOptions = {};
+  if (state.logoBase64) {
+    imageOptions = {
+      src: state.logoBase64,
+      imageSize: 0.3,
+      margin: 8,
+      hideBackgroundDots: true
+    };
+  }
+
+  state.qrCode = new QRCodeStyling({ 
+    width: size, height: size, type: 'canvas', data: data, margin: 10, 
+    qrOptions: { errorCorrectionLevel: state.errorCorrection }, 
+    imageOptions: imageOptions, 
+    dotsOptions: { color: fgColor, type: state.dotStyle }, 
+    backgroundOptions: { color: bgColor }, 
+    cornersSquareOptions: { type: state.cornerStyle, color: fgColor }, 
+    cornersDotOptions: { type: state.cornerStyle, color: fgColor } 
+  });
+  state.qrCode.append(container);
+  if (ctaText) setTimeout(function() { addCTAFrame(container, ctaText, fgColor, size); }, 200);
+  document.getElementById('action-buttons').classList.remove('hidden');
+  saveToHistory(data, state.currentType); 
+  loadHistory(); 
+  updateDashboard();
+  showToast('✅ QR Code generated!', 'success');
 }
 
 function buildQrData() {
-const type = state.currentType;
-let rawData = '';
+  const type = state.currentType;
+  let rawData = '';
+  
+  if (type === 'url') rawData = document.getElementById('f-url')?.value.trim() || '';
+  else if (type === 'text') rawData = document.getElementById('f-text')?.value.trim() || '';
+  else if (type === 'phone') { const p = document.getElementById('f-phone')?.value.trim(); rawData = p ? 'tel:' + p : ''; }
+  else if (type === 'email') { const e = document.getElementById('f-email')?.value.trim(); if (e) { const s = document.getElementById('f-email-subject')?.value.trim() || ''; const b = document.getElementById('f-email-body')?.value.trim() || ''; let m = 'mailto:' + e; const p = []; if (s) p.push('subject=' + encodeURIComponent(s)); if (b) p.push('body=' + encodeURIComponent(b)); if (p.length) m += '?' + p.join('&'); rawData = m; } }
+  else if (type === 'sms') { const ph = document.getElementById('f-sms-phone')?.value.trim(); if (ph) { const msg = document.getElementById('f-sms-msg')?.value.trim() || ''; rawData = 'sms:' + ph + (msg ? '?body=' + encodeURIComponent(msg) : ''); } }
+  else if (type === 'whatsapp') { const ph = document.getElementById('f-wa-phone')?.value.trim(); if (ph) { const msg = document.getElementById('f-wa-msg')?.value.trim() || ''; rawData = 'https://wa.me/' + ph + (msg ? '?text=' + encodeURIComponent(msg) : ''); } }
+  else if (type === 'telegram') { const u = document.getElementById('f-tg-user')?.value.trim(); if (u) { const msg = document.getElementById('f-tg-msg')?.value.trim() || ''; const user = u.startsWith('@') ? u.substring(1) : u; rawData = 'https://t.me/' + user + (msg ? '?text=' + encodeURIComponent(msg) : ''); } }
+  else if (type === 'wifi') { const ssid = document.getElementById('f-wifi-ssid')?.value.trim(); if (ssid) { const pass = document.getElementById('f-wifi-pass')?.value.trim() || ''; const enc = document.getElementById('f-wifi-enc')?.value || 'WPA'; rawData = 'WIFI:T:' + enc + ';S:' + ssid + ';P:' + pass + ';;'; } }
+  else if (type === 'vcard') { const fn = document.getElementById('f-vc-fn')?.value.trim() || ''; const ln = document.getElementById('f-vc-ln')?.value.trim() || ''; if (fn || ln) { const phone = document.getElementById('f-vc-phone')?.value.trim() || ''; const email = document.getElementById('f-vc-email')?.value.trim() || ''; const company = document.getElementById('f-vc-company')?.value.trim() || ''; const title = document.getElementById('f-vc-title')?.value.trim() || ''; rawData = ['BEGIN:VCARD','VERSION:3.0','N:' + ln + ';' + fn + ';;;','FN:' + fn + ' ' + ln,'ORG:' + company,'TITLE:' + title,'TEL:' + phone,'EMAIL:' + email,'END:VCARD'].join('\n'); } }
+  else if (type === 'location') { const lat = document.getElementById('f-loc-lat')?.value.trim(); const lng = document.getElementById('f-loc-lng')?.value.trim(); if (lat && lng) rawData = 'https://www.google.com/maps?q=' + lat + ',' + lng; }
+  else if (type === 'event') { const title = document.getElementById('f-ev-title')?.value.trim(); if (title) { const desc = document.getElementById('f-ev-desc')?.value.trim() || ''; const loc = document.getElementById('f-ev-location')?.value.trim() || ''; const start = document.getElementById('f-ev-start')?.value || ''; const end = document.getElementById('f-ev-end')?.value || ''; const fmt = function(d) { return d ? d.replace(/[-:]/g, '').replace('T', 'T') + '00' : ''; }; rawData = ['BEGIN:VEVENT','SUMMARY:' + title,'DESCRIPTION:' + desc,'LOCATION:' + loc,'DTSTART:' + fmt(start),'DTEND:' + fmt(end),'END:VEVENT'].join('\n'); } }
+  else if (type === 'payment') { const ptype = document.getElementById('f-pay-type')?.value; if (['mpesa','tigo','airtel'].includes(ptype)) { const num = document.getElementById('f-pay-number')?.value.trim(); if (num) { const amt = document.getElementById('f-pay-amount')?.value.trim() || ''; const ref = document.getElementById('f-pay-ref')?.value.trim() || ''; rawData = 'Payment via ' + ptype.toUpperCase() + '\nTill: ' + num + '\nAmount: ' + amt + '\nRef: ' + ref; } } else if (ptype === 'bank') { const bank = document.getElementById('f-pay-bank')?.value.trim() || ''; const name = document.getElementById('f-pay-bank-name')?.value.trim() || ''; const acc = document.getElementById('f-pay-bank-acc')?.value.trim() || ''; rawData = 'Bank Transfer\nBank: ' + bank + '\nName: ' + name + '\nAcc: ' + acc; } else { rawData = document.getElementById('f-pay-link')?.value.trim() || ''; } }
+  else if (type === 'app') { const ios = document.getElementById('f-app-ios')?.value.trim() || ''; const android = document.getElementById('f-app-android')?.value.trim() || ''; const name = document.getElementById('f-app-name')?.value.trim() || 'Our App'; if (ios || android) rawData = 'App: ' + name + '\niOS: ' + ios + '\nAndroid: ' + android; }
+  else if (type === 'menu') {
+    const title = document.getElementById('f-menu-title')?.value.trim() || 'Our Menu';
+    const itemsText = document.getElementById('f-menu-items')?.value.trim() || '';
+    if (!itemsText) { showToast('⚠️ Add menu items', 'error'); return ''; }
+    const items = itemsText.split('\n').filter(l => l.trim()).map(line => { const parts = line.split('|').map(p => p.trim()); return { name: parts[0] || '', price: parts[1] || '', desc: parts[2] || '' }; });
+    const menuData = { title: title, items: items, subtitle: 'Scan to view our menu' };
+    const jsonStr = JSON.stringify(menuData);
+    const compressed = pako.deflate(jsonStr);
+    let binary = ''; for (let i = 0; i < compressed.length; i++) binary += String.fromCharCode(compressed[i]);
+    rawData = window.location.origin + window.location.pathname + '#menu=' + encodeURIComponent(btoa(binary));
+  }
 
-switch(type) {
-case 'url': rawData = document.getElementById('f-url')?.value.trim() || ''; break;
-case 'text': rawData = document.getElementById('f-text')?.value.trim() || ''; break;
-case 'phone': { const p = document.getElementById('f-phone')?.value.trim(); rawData = p ? 'tel:' + p : ''; break; }
-case 'email': { const e = document.getElementById('f-email')?.value.trim(); if (!e) break; const s = document.getElementById('f-email-subject')?.value.trim() || ''; const b = document.getElementById('f-email-body')?.value.trim() || ''; let m = 'mailto:' + e; const p = []; if (s) p.push('subject=' + encodeURIComponent(s)); if (b) p.push('body=' + encodeURIComponent(b)); if (p.length) m += '?' + p.join('&'); rawData = m; break; }
-case 'sms': { const ph = document.getElementById('f-sms-phone')?.value.trim(); if (!ph) break; const msg = document.getElementById('f-sms-msg')?.value.trim() || ''; rawData = 'sms:' + ph + (msg ? '?body=' + encodeURIComponent(msg) : ''); break; }
-case 'whatsapp': { const ph = document.getElementById('f-wa-phone')?.value.trim(); if (!ph) break; const msg = document.getElementById('f-wa-msg')?.value.trim() || ''; rawData = 'https://wa.me/' + ph + (msg ? '?text=' + encodeURIComponent(msg) : ''); break; }
-case 'telegram': { const u = document.getElementById('f-tg-user')?.value.trim(); if (!u) break; const msg = document.getElementById('f-tg-msg')?.value.trim() || ''; const user = u.startsWith('@') ? u.substring(1) : u; rawData = 'https://t.me/' + user + (msg ? '?text=' + encodeURIComponent(msg) : ''); break; }
-case 'wifi': { const ssid = document.getElementById('f-wifi-ssid')?.value.trim(); if (!ssid) break; const pass = document.getElementById('f-wifi-pass')?.value.trim() || ''; const enc = document.getElementById('f-wifi-enc')?.value || 'WPA'; rawData = 'WIFI:T:' + enc + ';S:' + ssid + ';P:' + pass + ';;'; break; }
-case 'vcard': { const fn = document.getElementById('f-vc-fn')?.value.trim() || ''; const ln = document.getElementById('f-vc-ln')?.value.trim() || ''; if (!fn && !ln) break; const phone = document.getElementById('f-vc-phone')?.value.trim() || ''; const email = document.getElementById('f-vc-email')?.value.trim() || ''; const company = document.getElementById('f-vc-company')?.value.trim() || ''; const title = document.getElementById('f-vc-title')?.value.trim() || ''; rawData = ['BEGIN:VCARD','VERSION:3.0','N:' + ln + ';' + fn + ';;;','FN:' + fn + ' ' + ln,'ORG:' + company,'TITLE:' + title,'TEL:' + phone,'EMAIL:' + email,'END:VCARD'].join('\n'); break; }
-case 'location': { const lat = document.getElementById('f-loc-lat')?.value.trim(); const lng = document.getElementById('f-loc-lng')?.value.trim(); if (!lat || !lng) break; rawData = 'https://www.google.com/maps?q=' + lat + ',' + lng; break; }
-case 'event': { const title = document.getElementById('f-ev-title')?.value.trim(); if (!title) break; const desc = document.getElementById('f-ev-desc')?.value.trim() || ''; const loc = document.getElementById('f-ev-location')?.value.trim() || ''; const start = document.getElementById('f-ev-start')?.value || ''; const end = document.getElementById('f-ev-end')?.value || ''; const fmt = (d) => d ? d.replace(/[-:]/g, '').replace('T', 'T') + '00' : ''; rawData = ['BEGIN:VEVENT','SUMMARY:' + title,'DESCRIPTION:' + desc,'LOCATION:' + loc,'DTSTART:' + fmt(start),'DTEND:' + fmt(end),'END:VEVENT'].join('\n'); break; }
-case 'payment': { const ptype = document.getElementById('f-pay-type')?.value; if (['mpesa','tigo','airtel'].includes(ptype)) { const num = document.getElementById('f-pay-number')?.value.trim(); if (!num) break; const amt = document.getElementById('f-pay-amount')?.value.trim() || ''; const ref = document.getElementById('f-pay-ref')?.value.trim() || ''; rawData = Payment via${ptype.toUpperCase()}\nTill: latex
-{num}\nAmount: 
+  if (!rawData) { showToast('⚠️ Please fill in the required fields', 'error'); return ''; }
 
-{amt}\nRef: latex
-{ref}`; } else if (ptype === 'bank') { const bank = document.getElementById('f-pay-bank')?.value.trim() || ''; const name = document.getElementById('f-pay-bank-name')?.value.trim() || ''; const acc = document.getElementById('f-pay-bank-acc')?.value.trim() || ''; rawData = `Bank Transfer\nBank: 
+  if (state.isProtected && type !== 'menu') {
+    const password = document.getElementById('protect-password')?.value.trim();
+    if (!password) { showToast('⚠️ Please set a password for protection', 'error'); return ''; }
+    const encrypted = CryptoJS.AES.encrypt(rawData, password).toString();
+    rawData = window.location.origin + window.location.pathname + '#protected=' + encodeURIComponent(encrypted);
+  }
 
-{bank}\nName: latex
-{name}\nAcc: 
-
-{acc}; } else { rawData = document.getElementById('f-pay-link')?.value.trim() || ''; } break; } case 'app': { const ios = document.getElementById('f-app-ios')?.value.trim() || ''; const android = document.getElementById('f-app-android')?.value.trim() || ''; const name = document.getElementById('f-app-name')?.value.trim() || 'Our App'; if (!ios && !android) break; rawData =App: latex
-{name}\niOS: 
-
-{ios}\nAndroid: ${android}; break; }
-case 'menu': {
-const title = document.getElementById('f-menu-title')?.value.trim() || 'Our Menu';
-const itemsText = document.getElementById('f-menu-items')?.value.trim() || '';
-if (!itemsText) { showToast('️ Add menu items', 'error'); return ''; }
-const items = itemsText.split('\n').filter(l => l.trim()).map(line => { const parts = line.split('|').map(p => p.trim()); return { name: parts[0] || '', price: parts[1] || '', desc: parts[2] || '' }; });
-const menuData = { title, items, subtitle: 'Scan to view our menu' };
-const jsonStr = JSON.stringify(menuData);
-const compressed = pako.deflate(jsonStr);
-let binary = ''; for (let i = 0; i < compressed.length; i++) binary += String.fromCharCode(compressed[i]);
-rawData = window.location.origin + window.location.pathname + '#menu=' + encodeURIComponent(btoa(binary));
-break;
-}
-default: break;
-}
-
-if (!rawData) { showToast('⚠️ Please fill in the required fields', 'error'); return ''; }
-
-if (state.isProtected && type !== 'menu') {
-const password = document.getElementById('protect-password')?.value.trim();
-if (!password) { showToast('⚠️ Please set a password for protection', 'error'); return ''; }
-const encrypted = CryptoJS.AES.encrypt(rawData, password).toString();
-rawData = window.location.origin + window.location.pathname + '#protected=' + encodeURIComponent(encrypted);
-}
-
-return rawData;
-}
-
-function generateQR() {
-const data = buildQrData();
-if (!data) return;
-state.currentData = data;
-const size = parseInt(document.getElementById('qr-size').value);
-const fgColor = state.fgColor;
-const bgColor = state.bgTransparent ? 'transparent' : state.bgColor;
-const ctaText = document.getElementById('cta-text')?.value.trim() || '';
-const container = document.getElementById('qr-container');
-container.innerHTML = '';
-
-let imageOptions = {};
-if (state.logoBase64) {
-imageOptions = {
-src: state.logoBase64,
-imageSize: 0.3,
-margin: 8,
-hideBackgroundDots: true
-};
-}
-
-state.qrCode = new QRCodeStyling({
-width: size, height: size, type: 'canvas', data: data, margin: 10,
-qrOptions: { errorCorrectionLevel: state.errorCorrection },
-imageOptions: imageOptions,
-dotsOptions: { color: fgColor, type: state.dotStyle },
-backgroundOptions: { color: bgColor },
-cornersSquareOptions: { type: state.cornerStyle, color: fgColor },
-cornersDotOptions: { type: state.cornerStyle, color: fgColor }
-});
-state.qrCode.append(container);
-if (ctaText) setTimeout(() => addCTAFrame(container, ctaText, fgColor, size), 200);
-document.getElementById('action-buttons').classList.remove('hidden');
-saveToHistory(data, state.currentType);
-loadHistory();
-updateDashboard();
-showToast('✅ QR Code generated!', 'success');
+  return rawData;
 }
 
 function addCTAFrame(container, text, color, size) {
-const canvas = container.querySelector('canvas'); if (!canvas) return;
-const frameHeight = 60; const totalHeight = size + frameHeight;
-const frameCanvas = document.createElement('canvas'); frameCanvas.width = size; frameCanvas.height = totalHeight;
-const ctx = frameCanvas.getContext('2d');
-ctx.drawImage(canvas, 0, 0); ctx.fillStyle = color; ctx.fillRect(0, size, size, frameHeight);
-ctx.fillStyle = '#ffffff'; ctx.font = 'bold 24px -apple-system, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-ctx.fillText(text, size / 2, size + frameHeight / 2);
-container.innerHTML = ''; frameCanvas.style.maxWidth = '100%'; frameCanvas.style.height = 'auto'; frameCanvas.style.borderRadius = '12px'; container.appendChild(frameCanvas);
+  const canvas = container.querySelector('canvas'); if (!canvas) return;
+  const frameHeight = 60; const totalHeight = size + frameHeight;
+  const frameCanvas = document.createElement('canvas'); frameCanvas.width = size; frameCanvas.height = totalHeight;
+  const ctx = frameCanvas.getContext('2d');
+  ctx.drawImage(canvas, 0, 0); ctx.fillStyle = color; ctx.fillRect(0, size, size, frameHeight);
+  ctx.fillStyle = '#ffffff'; ctx.font = 'bold 24px -apple-system, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(text, size / 2, size + frameHeight / 2);
+  container.innerHTML = ''; frameCanvas.style.maxWidth = '100%'; frameCanvas.style.height = 'auto'; frameCanvas.style.borderRadius = '12px'; container.appendChild(frameCanvas);
 }
 
-function downloadQR(format) { if (!state.qrCode) { showToast('⚠️ Generate a QR code first', 'error'); return; } state.qrCode.download({ name: 'rex-qr-' + state.currentType + '-' + Date.now(), extension: format === 'svg' ? 'svg' : 'png' }); showToast('💾 Downloaded!', 'success'); }
-async function copyQR() { const container = document.getElementById('qr-container'); const canvas = container.querySelector('canvas'); if (!canvas) { showToast('⚠️ Generate a QR code first', 'error'); return; } try { canvas.toBlob(async (blob) => { try { await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]); showToast('📋 Copied to clipboard!', 'success'); } catch (e) { showToast('❌ Copy failed.', 'error'); } }, 'image/png'); } catch (e) { showToast(' Copy not supported', 'error'); } }
-async function shareNative() { const container = document.getElementById('qr-container'); const canvas = container.querySelector('canvas'); if (!canvas) { showToast('⚠️ Generate a QR code first', 'error'); return; } if (navigator.share) { try { canvas.toBlob(async (blob) => { const file = new File([blob], 'rex-qr.png', { type: 'image/png' }); try { await navigator.share({ title: 'QR Code - Rex International Technologies', text: 'Check out this QR Code!', files: [file] }); showToast('✅ Shared!', 'success'); } catch (e) { if (e.name !== 'AbortError') try { await navigator.share({ title: 'QR Code', text: 'Check this out!', url: window.location.href }); } catch (e2) {} } }, 'image/png'); } catch (e) { showToast('❌ Share failed', 'error'); } } else copyQR(); }
-function socialShare(platform) { if (!state.currentData) { showToast('️ Generate a QR code first', 'error'); return; } const url = encodeURIComponent(window.location.href); const text = encodeURIComponent('Check out this QR Code I created with Rex International Technologies QR Generator!'); let shareUrl = ''; switch(platform) { case 'whatsapp': shareUrl = 'https://wa.me/?text=' + text + '%20' + url; break; case 'facebook': shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url; break; case 'twitter': shareUrl = 'https://twitter.com/intent/tweet?text=' + text + '&url=' + url; break; case 'linkedin': shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url; break; case 'telegram': shareUrl = 'https://t.me/share/url?url=' + url + '&text=' + text; break; case 'email': shareUrl = 'mailto:?subject=' + text + '&body=' + url; break; } if (shareUrl) { window.open(shareUrl, 'blank', 'width=600,height=500'); showToast('Opening ' + platform + '...', 'success'); } }
-async function bulkGenerate() { const input = document.getElementById('bulk-input').value.trim(); if (!input) { showToast('⚠️ Enter items first', 'error'); return; } const items = input.split('\n').map(s => s.trim()).filter(s => s); if (items.length === 0) { showToast('⚠️ No valid items', 'error'); return; } if (items.length > 100) { showToast('⚠️ Max 100 items', 'error'); return; } showToast(' Generating...', 'info'); const zip = new JSZip(); const size = 500; for (let i = 0; i < items.length; i++) { const qr = new QRCodeStyling({ width: size, height: size, type: 'canvas', data: items[i], margin: 10, qrOptions: { errorCorrectionLevel: 'M' }, dotsOptions: { color: '#6366f1', type: 'rounded' }, backgroundOptions: { color: '#ffffff' } }); const blob = await qr.getRawData('png'); zip.file(('qr-' + (i + 1)).replace(/[^a-z0-9]/gi, '') + '.png', blob); } const content = await zip.generateAsync({ type: 'blob' }); const link = document.createElement('a'); link.href = URL.createObjectURL(content); link.download = 'rex-qr-bulk-' + Date.now() + '.zip'; link.click(); showToast('✅ Downloaded ZIP!', 'success'); }
+function downloadQR(format) { if (!state.qrCode) { showToast('️ Generate a QR code first', 'error'); return; } state.qrCode.download({ name: 'rex-qr-' + state.currentType + '-' + Date.now(), extension: format === 'svg' ? 'svg' : 'png' }); showToast('💾 Downloaded!', 'success'); }
 
+async function copyQR() { const container = document.getElementById('qr-container'); const canvas = container.querySelector('canvas'); if (!canvas) { showToast('⚠️ Generate a QR code first', 'error'); return; } try { canvas.toBlob(async function(blob) { try { await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]); showToast('📋 Copied to clipboard!', 'success'); } catch (e) { showToast('❌ Copy failed.', 'error'); } }, 'image/png'); } catch (e) { showToast('❌ Copy not supported', 'error'); } }
+
+async function shareNative() { const container = document.getElementById('qr-container'); const canvas = container.querySelector('canvas'); if (!canvas) { showToast('⚠️ Generate a QR code first', 'error'); return; } if (navigator.share) { try { canvas.toBlob(async function(blob) { const file = new File([blob], 'rex-qr.png', { type: 'image/png' }); try { await navigator.share({ title: 'QR Code - Rex International Technologies', text: 'Check out this QR Code!', files: [file] }); showToast('✅ Shared!', 'success'); } catch (e) { if (e.name !== 'AbortError') try { await navigator.share({ title: 'QR Code', text: 'Check this out!', url: window.location.href }); } catch (e2) {} } }, 'image/png'); } catch (e) { showToast('❌ Share failed', 'error'); } } else copyQR(); }
+
+function socialShare(platform) { if (!state.currentData) { showToast('⚠️ Generate a QR code first', 'error'); return; } const url = encodeURIComponent(window.location.href); const text = encodeURIComponent('Check out this QR Code I created with Rex International Technologies QR Generator!'); let shareUrl = ''; if (platform === 'whatsapp') shareUrl = 'https://wa.me/?text=' + text + '%20' + url; else if (platform === 'facebook') shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url; else if (platform === 'twitter') shareUrl = 'https://twitter.com/intent/tweet?text=' + text + '&url=' + url; else if (platform === 'linkedin') shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url; else if (platform === 'telegram') shareUrl = 'https://t.me/share/url?url=' + url + '&text=' + text; else if (platform === 'email') shareUrl = 'mailto:?subject=' + text + '&body=' + url; if (shareUrl) { window.open(shareUrl, '_blank', 'width=600,height=500'); showToast('Opening ' + platform + '...', 'success'); } }
+
+async function bulkGenerate() { const input = document.getElementById('bulk-input').value.trim(); if (!input) { showToast('⚠️ Enter items first', 'error'); return; } const items = input.split('\n').map(s => s.trim()).filter(s => s); if (items.length === 0) { showToast('⚠️ No valid items', 'error'); return; } if (items.length > 100) { showToast('⚠️ Max 100 items', 'error'); return; } showToast('⏳ Generating...', 'info'); const zip = new JSZip(); const size = 500; for (let i = 0; i < items.length; i++) { const qr = new QRCodeStyling({ width: size, height: size, type: 'canvas', data: items[i], margin: 10, qrOptions: { errorCorrectionLevel: 'M' }, dotsOptions: { color: '#6366f1', type: 'rounded' }, backgroundOptions: { color: '#ffffff' } }); const blob = await qr.getRawData('png'); zip.file(('qr-' + (i + 1)).replace(/[^a-z0-9]/gi, '_') + '.png', blob); } const content = await zip.generateAsync({ type: 'blob' }); const link = document.createElement('a'); link.href = URL.createObjectURL(content); link.download = 'rex-qr-bulk-' + Date.now() + '.zip'; link.click(); showToast('✅ Downloaded ZIP!', 'success'); }
+
+function handleBulkFile(input) { const file = input.files[0]; if (file) { const reader = new FileReader(); reader.onload = function(ev) { document.getElementById('bulk-input').value = ev.target.result; showToast('📄 File loaded', 'success'); }; reader.readAsText(file); } }
+
+// ============ SCANNER ============
 function openScanner() {
-document.getElementById('scanner-modal').classList.remove('hidden');
-document.getElementById('scan-result-page').classList.add('hidden');
-startCamera();
+  document.getElementById('scanner-modal').classList.remove('hidden');
+  document.getElementById('scan-result-page').classList.add('hidden');
+  startCamera();
 }
 
 function closeScanner() {
-stopCamera();
-document.getElementById('scanner-modal').classList.add('hidden');
+  stopCamera();
+  document.getElementById('scanner-modal').classList.add('hidden');
 }
 
 function startCamera() {
-const video = document.getElementById('camera-video');
-const canvas = document.getElementById('camera-canvas');
-const ctx = canvas.getContext('2d', { willReadFrequently: true });
-
-stopCamera();
-
-if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-showToast('❌ Camera not supported', 'error');
-return;
-}
-
-navigator.mediaDevices.getUserMedia({
-video: { facingMode: { ideal: 'environment' } },
-audio: false
-}).then((stream) => {
-cameraStream = stream;
-video.srcObject = stream;
-video.play();
-
-video.onloadedmetadata = () => {
-canvas.width = video.videoWidth;
-canvas.height = video.videoHeight;
-scanFrame(video, canvas, ctx);
-};
-}).catch((err) => {
-console.error('Camera error:', err);
-showToast('❌ Camera access denied. Use Gallery instead.', 'error');
-});
+  const video = document.getElementById('camera-video');
+  const canvas = document.getElementById('camera-canvas');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  
+  stopCamera();
+  
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    showToast('❌ Camera not supported', 'error');
+    return;
+  }
+  
+  navigator.mediaDevices.getUserMedia({ 
+    video: { facingMode: { ideal: 'environment' } },
+    audio: false
+  }).then(function(stream) {
+    cameraStream = stream;
+    video.srcObject = stream;
+    video.play();
+    
+    video.onloadedmetadata = function() {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      scanFrame(video, canvas, ctx);
+    };
+  }).catch(function(err) {
+    console.error('Camera error:', err);
+    showToast('❌ Camera access denied. Use Gallery instead.', 'error');
+  });
 }
 
 function scanFrame(video, canvas, ctx) {
-if (video.readyState === video.HAVE_ENOUGH_DATA) {
-ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-const code = jsQR(imageData.data, imageData.width, imageData.height, {
-inversionAttempts: 'dontInvert'
-});
-
-if (code) {
-stopCamera();
-showScanResult(code.data);
-return;
-}
-}
-cameraAnimationId = requestAnimationFrame(() => scanFrame(video, canvas, ctx));
+  if (video.readyState === video.HAVE_ENOUGH_DATA) {
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const code = jsQR(imageData.data, imageData.width, imageData.height, {
+      inversionAttempts: 'dontInvert'
+    });
+    
+    if (code) {
+      stopCamera();
+      showScanResult(code.data);
+      return;
+    }
+  }
+  cameraAnimationId = requestAnimationFrame(function() { scanFrame(video, canvas, ctx); });
 }
 
 function stopCamera() {
-if (cameraAnimationId) {
-cancelAnimationFrame(cameraAnimationId);
-cameraAnimationId = null;
-}
-if (cameraStream) {
-cameraStream.getTracks().forEach(track => track.stop());
-cameraStream = null;
-}
-const video = document.getElementById('camera-video');
-if (video) video.srcObject = null;
-}
-
-function handleGalleryUpload(e) {
-const file = e.target.files[0];
-if (!file) return;
-
-document.getElementById('scan-loading').classList.remove('hidden');
-
-const reader = new FileReader();
-reader.onload = (event) => {
-const img = new Image();
-img.onload = () => {
-const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = img.width;
-canvas.height = img.height;
-ctx.drawImage(img, 0, 0);
-const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-const code = jsQR(imageData.data, imageData.width, imageData.height, {
-inversionAttempts: 'attemptBoth'
-});
-
-document.getElementById('scan-loading').classList.add('hidden');
-
-if (code) {
-showToast('✅ QR Code found!', 'success');
-showScanResult(code.data);
-} else {
-showToast('❌ No QR code found in this image', 'error');
-}
-};
-img.onerror = () => {
-document.getElementById('scan-loading').classList.add('hidden');
-showToast('❌ Failed to load image', 'error');
-};
-img.src = event.target.result;
-};
-reader.readAsDataURL(file);
-e.target.value = '';
+  if (cameraAnimationId) {
+    cancelAnimationFrame(cameraAnimationId);
+    cameraAnimationId = null;
+  }
+  if (cameraStream) {
+    cameraStream.getTracks().forEach(function(track) { track.stop(); });
+    cameraStream = null;
+  }
+  const video = document.getElementById('camera-video');
+  if (video) video.srcObject = null;
 }
 
-function saveToHistory(data, type) {
-try {
-const history = JSON.parse(localStorage.getItem('rex-qr-history') || '[]');
-history.unshift({ id: Date.now(), data: data, type: type, isProtected: state.isProtected, date: new Date().toISOString() });
-if (history.length > 50) history.pop();
-localStorage.setItem('rex-qr-history', JSON.stringify(history));
-} catch (e) {}
+function handleGalleryUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  
+  document.getElementById('scan-loading').classList.remove('hidden');
+  
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height, {
+        inversionAttempts: 'attemptBoth'
+      });
+      
+      document.getElementById('scan-loading').classList.add('hidden');
+      
+      if (code) {
+        showToast('✅ QR Code found!', 'success');
+        showScanResult(code.data);
+      } else {
+        showToast('❌ No QR code found in this image', 'error');
+      }
+    };
+    img.onerror = function() {
+      document.getElementById('scan-loading').classList.add('hidden');
+      showToast('❌ Failed to load image', 'error');
+    };
+    img.src = event.target.result;
+  };
+  reader.readAsDataURL(file);
+  input.value = '';
 }
 
-function loadHistory() {
-const grid = document.getElementById('history-grid');
-let history = [];
-try { history = JSON.parse(localStorage.getItem('rex-qr-history') || '[]'); } catch (e) {}
-if (history.length === 0) { grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-6 text-xs">No history yet</p>'; return; }
-grid.innerHTML = history.map(item => {
-const typeInfo = qrTypes.find(t => t.id === item.type) || { icon: 'fa-qrcode', label: item.type };
-const icon = item.isProtected ? 'fa-lock' : typeInfo.icon;
-return <div class="bg-gray-50 dark:bg-slate-900 rounded-lg p-2 cursor-pointer border border-gray-200 dark:border-slate-700" data-id="${item.id}"><div class="aspect-square bg-white rounded flex items-center justify-center mb-1"><i class="fa-solid {typeInfo.label}</p></div>`;
-}).join('');
+// ============ DASHBOARD & HISTORY ============
+function saveToHistory(data, type) { 
+  try { 
+    const history = JSON.parse(localStorage.getItem('rex-qr-history') || '[]'); 
+    history.unshift({ id: Date.now(), data: data, type: type, isProtected: state.isProtected, date: new Date().toISOString() }); 
+    if (history.length > 50) history.pop(); 
+    localStorage.setItem('rex-qr-history', JSON.stringify(history)); 
+  } catch (e) {} 
+}
+
+function loadHistory() { 
+  const grid = document.getElementById('history-grid'); 
+  let history = []; 
+  try { history = JSON.parse(localStorage.getItem('rex-qr-history') || '[]'); } catch (e) {} 
+  if (history.length === 0) { grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-6 text-xs">No history yet</p>'; return; } 
+  grid.innerHTML = history.map(function(item) { 
+    const typeInfo = qrTypes.find(t => t.id === item.type) || { icon: 'fa-qrcode', label: item.type }; 
+    const icon = item.isProtected ? 'fa-lock' : typeInfo.icon;
+    return '<div class="bg-gray-50 dark:bg-slate-900 rounded-lg p-2 cursor-pointer border border-gray-200 dark:border-slate-700" data-id="' + item.id + '"><div class="aspect-square bg-white rounded flex items-center justify-center mb-1"><i class="fa-solid ' + icon + ' text-xl text-primary"></i></div><p class="text-[10px] font-semibold truncate dark:text-white">' + typeInfo.label + '</p></div>'; 
+  }).join(''); 
 }
 
 function updateDashboard() {
-let history = [];
-try { history = JSON.parse(localStorage.getItem('rex-qr-history') || '[]'); } catch (e) {}
-const total = history.length;
-const protectedCount = history.filter(h => h.isProtected).length;
-const menuCount = history.filter(h => h.type === 'menu').length;
-document.getElementById('stat-total').textContent = total;
-document.getElementById('stat-protected').textContent = protectedCount;
-document.getElementById('stat-menu').textContent = menuCount;
-const typeCounts = {};
-history.forEach(h => { typeCounts[h.type] = (typeCounts[h.type] || 0) + 1; });
-const labels = Object.keys(typeCounts).map(k => { const t = qrTypes.find(x => x.id === k); return t ? t.label : k; });
-const data = Object.values(typeCounts);
-const colors = ['#6366f1', '#8b5cf6', '#ec4899', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#14b8a6'];
-const ctx = document.getElementById('analytics-chart').getContext('2d');
-if (analyticsChart) analyticsChart.destroy();
-if (total === 0) {
-ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-ctx.fillStyle = document.documentElement.classList.contains('dark') ? '#94a3b8' : '#64748b';
-ctx.font = '14px sans-serif';
-ctx.textAlign = 'center';
-ctx.fillText('Generate QR codes to see analytics', ctx.canvas.width / 2, ctx.canvas.height / 2);
-return;
-}
-analyticsChart = new Chart(ctx, {
-type: 'doughnut',
-data: { labels: labels, datasets: [{ data: data, backgroundColor: colors, borderWidth: 0 }] },
-options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: document.documentElement.classList.contains('dark') ? '#fff' : '#000', font: { size: 10 }, boxWidth: 10 } } } }
-});
+  let history = [];
+  try { history = JSON.parse(localStorage.getItem('rex-qr-history') || '[]'); } catch (e) {}
+  const total = history.length;
+  const protectedCount = history.filter(h => h.isProtected).length;
+  const menuCount = history.filter(h => h.type === 'menu').length;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-protected').textContent = protectedCount;
+  document.getElementById('stat-menu').textContent = menuCount;
+  const typeCounts = {};
+  history.forEach(function(h) { typeCounts[h.type] = (typeCounts[h.type] || 0) + 1; });
+  const labels = Object.keys(typeCounts).map(function(k) { const t = qrTypes.find(x => x.id === k); return t ? t.label : k; });
+  const data = Object.values(typeCounts);
+  const colors = ['#6366f1', '#8b5cf6', '#ec4899', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#14b8a6'];
+  const ctx = document.getElementById('analytics-chart').getContext('2d');
+  if (analyticsChart) analyticsChart.destroy();
+  if (total === 0) {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillStyle = document.documentElement.classList.contains('dark') ? '#94a3b8' : '#64748b';
+    ctx.font = '14px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Generate QR codes to see analytics', ctx.canvas.width / 2, ctx.canvas.height / 2);
+    return;
+  }
+  analyticsChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels: labels, datasets: [{ data: data, backgroundColor: colors, borderWidth: 0 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: document.documentElement.classList.contains('dark') ? '#fff' : '#000', font: { size: 10 }, boxWidth: 10 } } } }
+  });
 }
 
+function clearHistory() { if (confirm('Clear all history?')) { localStorage.removeItem('rex-qr-history'); loadHistory(); updateDashboard(); showToast('🗑️ History cleared', 'success'); } }
+
+// ============ THEME ============
 function initTheme() { const saved = localStorage.getItem('rex-theme') || 'light'; if (saved === 'dark') document.documentElement.classList.add('dark'); }
 function toggleTheme() { document.documentElement.classList.toggle('dark'); const isDark = document.documentElement.classList.contains('dark'); localStorage.setItem('rex-theme', isDark ? 'dark' : 'light'); if(analyticsChart) updateDashboard(); }
-function showToast(msg, type = 'success') { const toast = document.getElementById('toast'); const colors = { success: 'bg-green-500', error: 'bg-red-500', info: 'bg-blue-500' }; toast.className = fixed bottom-6 left-1/2 -translate-x-1/2 z-50 toast px-5 py-2.5 rounded-full text-white font-semibold shadow-2xl text-sm ${colors[type] || colors.success}; toast.textContent = msg; toast.classList.remove('hidden'); setTimeout(() => toast.classList.add('hidden'), 3000); }
 
-function initPWA() {
-const manifestData = {
-name: "QRCode Generator - Rex International Technologies",
-short_name: "QR Code Gen",
-description: "Create beautiful QR codes instantly - 100% Free",
-start_url: "./",
-display: "standalone",
-orientation: "portrait",
-background_color: "#6366f1",
-theme_color: "#6366f1",
-icons: [
-{
-src: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%236366f1' rx='20'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>QR</text></svg>",
-sizes: "192x192",
-type: "image/svg+xml"
-},
-{
-src: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%236366f1' rx='20'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>QR</text></svg>",
-sizes: "512x512",
-type: "image/svg+xml"
-}
- ]
-};
-const blob = new Blob([JSON.stringify(manifestData)], { type: 'application/json' });
-const manifestURL = URL.createObjectURL(blob);
-const link = document.createElement('link');
-link.rel = 'manifest';
-link.href = manifestURL;
-document.head.appendChild(link);
-
-window.addEventListener('beforeinstallprompt', (e) => {
-e.preventDefault();
-deferredPrompt = e;
-});
-
-document.getElementById('install-app-btn').addEventListener('click', async () => {
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-const isAndroid = /Android/.test(navigator.userAgent);
-
-if (deferredPrompt) {
-deferredPrompt.prompt();
-const { outcome } = await deferredPrompt.userChoice;
-if (outcome === 'accepted') {
-showToast('✅ App installed!', 'success');
-}
-deferredPrompt = null;
-} else if (isIOS) {
-document.getElementById('install-instructions').innerHTML = &lt;p&gt;1. Tap the &lt;i class="fa-solid fa-share-from-square text-primary"&gt;&lt;/i&gt; &lt;b&gt;Share&lt;/b&gt; button at the bottom.&lt;/p&gt; &lt;p&gt;2. Scroll down and tap &lt;b&gt;"Add to Home Screen"&lt;/b&gt;.&lt;/p&gt; &lt;p&gt;3. Tap &lt;b&gt;Add&lt;/b&gt; to confirm.&lt;/p>;
-document.getElementById('install-modal').classList.remove('hidden');
-document.getElementById('install-modal').classList.add('flex');
-} else if (isAndroid) {
-document.getElementById('install-instructions').innerHTML = &lt;p&gt;1. Tap the &lt;i class="fa-solid fa-ellipsis-vertical text-primary"&gt;&lt;/i&gt; menu (top right).&lt;/p&gt; &lt;p&gt;2. Tap &lt;b&gt;"Install app"&lt;/b&gt; or &lt;b&gt;"Add to Home Screen"&lt;/b&gt;.&lt;/p&gt; &lt;p&gt;3. Tap &lt;b&gt;Install&lt;/b&gt; to confirm.&lt;/p>;
-document.getElementById('install-modal').classList.remove('hidden');
-document.getElementById('install-modal').classList.add('flex');
-} else {
-document.getElementById('install-instructions').innerHTML = &lt;p&gt;1. Click the &lt;i class="fa-solid fa-download text-primary"&gt;&lt;/i&gt; icon in your browser's address bar.&lt;/p&gt; &lt;p&gt;2. Select &lt;b&gt;"Install"&lt;/b&gt;.&lt;/p>;
-document.getElementById('install-modal').classList.remove('hidden');
-document.getElementById('install-modal').classList.add('flex');
-}
-});
-
-document.getElementById('close-install-modal').addEventListener('click', () => {
-document.getElementById('install-modal').classList.add('hidden');
-document.getElementById('install-modal').classList.remove('flex');
-});
-
-if ('serviceWorker' in navigator) {
-const swCode = const CACHE_NAME='rex-qr-v4';self.addEventListener('install',(e)=&gt;{e.waitUntil(caches.open(CACHE_NAME).then((cache)=&gt;cache.addAll(['/'])));});self.addEventListener('fetch',(e)=&gt;{e.respondWith(caches.match(e.request).then((r)=&gt;r||fetch(e.request)));});;
-const blob = new Blob([swCode], { type: 'application/javascript' });
-const swUrl = URL.createObjectURL(blob);
-navigator.serviceWorker.register(swUrl).catch(() => {});
-}
+function showToast(msg, type) {
+  type = type || 'success';
+  const toast = document.getElementById('toast');
+  const colors = { success: 'bg-green-500', error: 'bg-red-500', info: 'bg-blue-500' };
+  toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 toast px-5 py-2.5 rounded-full text-white font-semibold shadow-2xl text-sm ' + (colors[type] || colors.success);
+  toast.textContent = msg;
+  toast.classList.remove('hidden');
+  setTimeout(function() { toast.classList.add('hidden'); }, 3000);
 }
 
-document.addEventListener('DOMContentLoaded', init);
+// ============ PWA ============
+function initPWA() { 
+  const manifestData = {
+    name: "QRCode Generator - Rex International Technologies",
+    short_name: "QR Code Gen",
+    description: "Create beautiful QR codes instantly - 100% Free",
+    start_url: "./",
+    display: "standalone",
+    orientation: "portrait",
+    background_color: "#6366f1",
+    theme_color: "#6366f1",
+    icons: [
+      {
+        src: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%236366f1' rx='20'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>QR</text></svg>",
+        sizes: "192x192",
+        type: "image/svg+xml"
+      },
+      {
+        src: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%236366f1' rx='20'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>QR</text></svg>",
+        sizes: "512x512",
+        type: "image/svg+xml"
+      }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifestData)], { type: 'application/json' });
+  const manifestURL = URL.createObjectURL(blob);
+  const link = document.createElement('link');
+  link.rel = 'manifest';
+  link.href = manifestURL;
+  document.head.appendChild(link);
+
+  window.addEventListener('beforeinstallprompt', function(e) { 
+    e.preventDefault(); 
+    deferredPrompt = e; 
+  }); 
+  
+  if ('serviceWorker' in navigator) {
+    const swCode = "const CACHE_NAME='rex-qr-v4';self.addEventListener('install',function(e){e.waitUntil(caches.open(CACHE_NAME).then(function(cache){return cache.addAll(['/']);}));});self.addEventListener('fetch',function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request);});});";
+    const blob = new Blob([swCode], { type: 'application/javascript' });
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl).catch(function() {});
+  }
+}
+
+function showInstallModal() {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isAndroid = /Android/.test(navigator.userAgent);
+  
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(choiceResult) {
+      if (choiceResult.outcome === 'accepted') {
+        showToast('✅ App installed!', 'success');
+      }
+      deferredPrompt = null;
+    });
+  } else if (isIOS) {
+    document.getElementById('install-instructions').innerHTML = '<p>1. Tap the <i class="fa-solid fa-share-from-square text-primary"></i> <b>Share</b> button at the bottom.</p><p>2. Scroll down and tap <b>"Add to Home Screen"</b>.</p><p>3. Tap <b>Add</b> to confirm.</p>';
+    document.getElementById('install-modal').classList.remove('hidden');
+  } else if (isAndroid) {
+    document.getElementById('install-instructions').innerHTML = '<p>1. Tap the <i class="fa-solid fa-ellipsis-vertical text-primary"></i> menu (top right).</p><p>2. Tap <b>"Install app"</b> or <b>"Add to Home Screen"</b>.</p><p>3. Tap <b>Install</b> to confirm.</p>';
+    document.getElementById('install-modal').classList.remove('hidden');
+  } else {
+    document.getElementById('install-instructions').innerHTML = '<p>1. Click the <i class="fa-solid fa-download text-primary"></i> icon in your browser\'s address bar.</p><p>2. Select <b>"Install"</b>.</p>';
+    document.getElementById('install-modal').classList.remove('hidden');
+  }
+}
+
+function closeInstallModal() { 
+  document.getElementById('install-modal').classList.add('hidden'); 
+}
 </script>
 </body>
 </html>
+
